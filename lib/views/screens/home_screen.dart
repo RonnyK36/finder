@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,8 +13,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        color: Colors.amber,
+      body: Column(
+        children: [
+          CarouselSlider(
+            items: [],
+            options: CarouselOptions(),
+          ),
+        ],
       ),
     );
   }

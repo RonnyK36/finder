@@ -1,5 +1,9 @@
+import 'package:finder/config/configurations.dart';
+import 'package:finder/views/screens/login_ui_screen.dart';
+import 'package:finder/views/screens/root.dart';
 import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'home_screen.dart';
 
@@ -8,6 +12,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Config().init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -37,10 +42,11 @@ class LandingPage extends StatelessWidget {
               SizedBox(height: 40),
               reusableButton(
                 context,
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                },
+                onPressed: () => Get.to(() => Root()),
+                // onPressed: () {
+                //   Navigator.pushReplacement(
+                //       context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                // },
                 buttonName: 'Get started',
                 icon: Icons.arrow_forward,
               ),
