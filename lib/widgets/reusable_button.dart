@@ -4,32 +4,24 @@ import 'package:google_fonts/google_fonts.dart';
 
 ElevatedButton reusableButton(
   context, {
-  VoidCallback? onPressed,
-  String? buttonName,
-  IconData? icon,
+  required VoidCallback onPressed,
+  required String label,
+  required padding,
 }) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       elevation: 3,
+      padding: padding,
       primary: Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(25),
       ),
     ),
     onPressed: onPressed,
-    child: Container(
-      width: MediaQuery.of(context).size.width * 0.75,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            buttonName!,
-            // style: GoogleFonts.ubuntu(textStyle: kButtonTS),
-            style: kButtonTS,
-          ),
-          Icon(icon),
-        ],
-      ),
+    child: Text(
+      label,
+      // style: GoogleFonts.ubuntu(textStyle: kButtonTS),
+      style: kButtonTS,
     ),
   );
 }

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 const kBodyText = TextStyle(color: Color(0xff1565C0), fontSize: 18);
 var kButtonTS = GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 20));
 const kPrimaryColor = Color(0xff0d47a1);
+const kErrorColor = Color(0xfffe5350);
 
 class Config {
   static MediaQueryData? _mediaQueryData;

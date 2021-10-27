@@ -43,12 +43,10 @@ class LandingPage extends StatelessWidget {
               reusableButton(
                 context,
                 onPressed: () => Get.to(() => Root()),
-                // onPressed: () {
-                //   Navigator.pushReplacement(
-                //       context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                // },
-                buttonName: 'Get started',
-                icon: Icons.arrow_forward,
+                padding: EdgeInsets.symmetric(
+                    horizontal: Config.screenWidth! * 0.3,
+                    vertical: Config.screenHeight! * 0.02),
+                label: 'Get started',
               ),
               Spacer(),
             ],
