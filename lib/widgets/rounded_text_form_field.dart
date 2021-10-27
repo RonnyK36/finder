@@ -25,7 +25,10 @@ class RoundedTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: kPrimaryColor),
+          borderSide: BorderSide(
+            width: 2,
+            color: kAccentColor,
+          ),
           borderRadius: BorderRadius.circular(30),
         ),
         enabledBorder: OutlineInputBorder(
@@ -37,7 +40,10 @@ class RoundedTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: kErrorColor),
+          borderSide: BorderSide(
+            width: 2,
+            color: kAccentColor,
+          ),
           borderRadius: BorderRadius.circular(30),
         ),
       ),

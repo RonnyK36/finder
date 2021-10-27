@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
     Config().init(context);
     return Scaffold(
       // backgroundColor: Colors.white,
-      appBar: AppBar(),
+
       body: SingleChildScrollView(
         child: Container(
           // color: Colors.amber,
@@ -53,6 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                       autoPlayInterval: Duration(seconds: 4),
                       autoPlayAnimationDuration: Duration(seconds: 2),
                     )),
+              ),
+              SizedBox(
+                height: Config.screenHeight! * 0.02,
               ),
               SignInForm(),
             ],

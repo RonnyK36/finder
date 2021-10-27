@@ -6,6 +6,7 @@ const kBodyText = TextStyle(color: Color(0xff1565C0), fontSize: 18);
 var kButtonTS = GoogleFonts.ubuntu(textStyle: TextStyle(fontSize: 20));
 const kPrimaryColor = Color(0xff0d47a1);
 const kErrorColor = Color(0xfffe5350);
+const kAccentColor = Color(0xff6061fa);
 
 class Config {
   static MediaQueryData? _mediaQueryData;
