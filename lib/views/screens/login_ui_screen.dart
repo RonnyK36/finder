@@ -55,17 +55,8 @@ class _LoginPageState extends State<LoginPage> {
                       autoPlayAnimationDuration: Duration(seconds: 2),
                     )),
               ),
-              SizedBox(
-                height: Config.screenHeight! * 0.02,
-              ),
+              // SizedBox(height: Config.screenHeight! * 0.02),
               SignInForm(),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'Kevin Rono',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ),
             ],
           ),
         ),

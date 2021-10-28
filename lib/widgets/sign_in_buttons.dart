@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/home_screen.dart';
+import 'package:finder/views/screens/sign_up_screen.dart';
 import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class SignInButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Align(
           alignment: Alignment.centerRight,
@@ -42,7 +44,9 @@ class SignInButtons extends StatelessWidget {
                 'Don\'t have an account? ',
                 style: kUbuntu15,
               ),
-              TextButton(onPressed: () {}, child: Text('Sign up')),
+              TextButton(
+                  onPressed: () => Get.to(() => SignUpScreen()),
+                  child: Text('Sign up')),
             ],
           ),
         ),

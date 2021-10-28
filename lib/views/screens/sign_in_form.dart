@@ -12,12 +12,12 @@ class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Config.screenHeight! * 0.5,
+      height: Config.screenHeight! * 0.51,
       child: Form(
         child: Card(
           elevation: 5,
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,13 +40,17 @@ class SignInForm extends StatelessWidget {
     return Column(
       children: [
         RoundedTextFormField(
-          hintText: 'Email',
+          labelText: 'Email',
+          icon: Icons.person,
+          validator: null,
           isObscure: false,
           emailController: _emailController,
         ),
-        SizedBox(height: Config.screenHeight! * 0.02),
+        SizedBox(height: Config.screenHeight! * 0.015),
         RoundedTextFormField(
-          hintText: 'Password',
+          icon: Icons.lock,
+          validator: null,
+          labelText: 'Password',
           isObscure: true,
           emailController: _passwordController,
         ),

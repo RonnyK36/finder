@@ -31,12 +31,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: Config.screenHeight! * 0.02,
               ),
               SignInForm(),
-              SignInButtons(
-                label: 'Sign up',
-                onPressed: () {
-                  print('Sign up');
-                },
-              )
             ],
           ),
         ),
