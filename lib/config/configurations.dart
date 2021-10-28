@@ -8,6 +8,10 @@ const kPrimaryColor = Color(0xff0d47a1);
 const kErrorColor = Color(0xfffe5350);
 const kAccentColor = Color(0xff6061fa);
 
+var kUbuntu15 = GoogleFonts.ubuntu(
+  textStyle: TextStyle(fontSize: 15),
+);
+
 class Config {
   static MediaQueryData? _mediaQueryData;
   static double? screenWidth;

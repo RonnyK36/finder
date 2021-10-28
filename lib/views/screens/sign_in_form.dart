@@ -1,7 +1,9 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/reusable_button.dart';
+import 'package:finder/views/screens/home_screen.dart';
 import 'package:finder/widgets/rounded_text_form_field.dart';
+import 'package:finder/widgets/sign_in_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignInForm extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -16,28 +18,17 @@ class SignInForm extends StatelessWidget {
           elevation: 5,
           child: Padding(
             padding: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                buildTextFormFields(),
-                Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      child: Text('Forgot password?'),
-                      onPressed: () {},
-                    ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  buildTextFormFields(),
+                  SignInButtons(
+                    label: 'Login',
+                    onPressed: () => Get.to(() => HomeScreen()),
                   ),
-                ),
-                reusableButton(
-                  context,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Config.screenWidth! * 0.35,
-                      vertical: Config.screenHeight! * 0.02),
-                  label: 'Login',
-                  onPressed: () {},
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Finder',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'NotoSansMono-Regular',
         primaryColor: Color(0xff0d47a1),
         accentColor: Color(0xff6061fa),
       ),

@@ -5,6 +5,7 @@ import 'package:finder/views/screens/sign_in_form.dart';
 import 'package:finder/widgets/login_header.dart';
 import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // import 'package:flutter_svg/svg.dart';
 
@@ -58,6 +59,13 @@ class _LoginPageState extends State<LoginPage> {
                 height: Config.screenHeight! * 0.02,
               ),
               SignInForm(),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'Kevin Rono',
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
             ],
           ),
         ),

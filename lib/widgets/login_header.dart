@@ -20,7 +20,7 @@ class TitleSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(5.0),
               child: Text(title!,
                   style: GoogleFonts.ubuntu(
                     textStyle: TextStyle(
