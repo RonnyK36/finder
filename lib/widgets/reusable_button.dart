@@ -1,6 +1,5 @@
 import 'package:finder/config/configurations.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 ElevatedButton reusableButton(
   context, {

@@ -1,7 +1,5 @@
-import 'dart:ffi';
-
 import 'package:finder/config/configurations.dart';
-import 'package:finder/views/screens/home_screen.dart';
+import 'package:finder/views/screens/reset_password.dart';
 import 'package:finder/views/screens/sign_up_screen.dart';
 import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +26,7 @@ class SignInButtons extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: TextButton(
             child: Text('Forgot password?'),
-            onPressed: () {},
+            onPressed: () => Get.to(() => ResetPassword()),
           ),
         ),
         reusableButton(
