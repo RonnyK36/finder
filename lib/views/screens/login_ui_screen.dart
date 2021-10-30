@@ -3,9 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/sign_in_form.dart';
 import 'package:finder/widgets/login_header.dart';
-import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 // import 'package:flutter_svg/svg.dart';
 

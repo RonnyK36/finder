@@ -18,7 +18,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          // color: Colors.amber,
           height: Config.screenHeight! * 0.9,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

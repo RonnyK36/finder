@@ -10,11 +10,14 @@ import 'package:get/get.dart';
 class SignInButtons extends StatelessWidget {
   const SignInButtons({
     Key? key,
-    required this.label,
-    required this.onPressed,
+    required this.formKey,
+    required this.emailController,
+    required this.passwordController,
   }) : super(key: key);
-  final String label;
-  final VoidCallback onPressed;
+
+  final GlobalKey<FormState> formKey;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +35,14 @@ class SignInButtons extends StatelessWidget {
           context,
           padding: EdgeInsets.symmetric(
               horizontal: Config.screenWidth! * 0.35,
-              vertical: Config.screenHeight! * 0.02),
-          label: label,
-          onPressed: onPressed,
+              vertical: Config.screenHeight! * 0.015),
+          label: 'Login',
+          onPressed: () {
+            if (formKey.currentState!.validate()) {
+              String email = emailController.text.trim();
+              String password = passwordController.text.trim();
+            }
+          },
         ),
         Align(
           alignment: Alignment.centerLeft,
