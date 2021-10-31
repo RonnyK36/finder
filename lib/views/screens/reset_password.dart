@@ -1,7 +1,6 @@
 import 'package:finder/config/configurations.dart';
 import 'package:finder/widgets/login_header.dart';
 import 'package:finder/widgets/reset_form.dart';
-import 'package:finder/widgets/rounded_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

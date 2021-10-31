@@ -1,7 +1,5 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/login_header.dart';
 import 'package:finder/widgets/rounded_text_form_field.dart';
-import 'package:finder/widgets/sign_in_buttons.dart';
 import 'package:finder/widgets/sign_up_buttons.dart';
 import 'package:flutter/material.dart';
 
@@ -19,20 +17,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
+  bool isTenant = true;
+
+  late int selectedRadio;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedRadio = 0;
+  }
+
+  setSelectedRadio(val) {
+    setState(() {
+      selectedRadio = val;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Create an Account'),
+        backgroundColor: kAccentColor,
+      ),
       body: SingleChildScrollView(
-        child: Container(
-          height: Config.screenHeight! * 0.99,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              // Header of page
-              TitleSection(title: 'Create an account'),
-              buildFormFileds(),
-            ],
+        child: SafeArea(
+          child: Container(
+            // height: Config.screenHeight! * 0.99,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Header of page
+                // TitleSection(title: 'Create an account'),
+                buildFormFileds(),
+              ],
+            ),
           ),
         ),
       ),
@@ -44,11 +63,50 @@ class _SignUpScreenState extends State<SignUpScreen> {
       elevation: 3,
       shadowColor: kAccentColor,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: EdgeInsets.symmetric(
+          horizontal: 10,
+        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Radio(
+                        value: 1,
+                        groupValue: selectedRadio,
+                        onChanged: (val) {
+                          print('Tenant');
+                          setSelectedRadio(val);
+                        },
+                      ),
+                      Text(
+                        'Tenant',
+                        style: kUbuntu15,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Radio(
+                        value: 2,
+                        groupValue: selectedRadio,
+                        onChanged: (val) {
+                          print('Landlord');
+                          setSelectedRadio(val);
+                        },
+                      ),
+                      Text(
+                        'Landlord',
+                        style: kUbuntu15,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
               Form(
                 key: formKey,
                 child: Container(
@@ -134,6 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.visiblePassword,
                       ),
                       SignUpButtons(
+                        isTenant: isTenant,
                         formKey: formKey,
                         emailController: _emailController,
                         passwordController: _passwordController,

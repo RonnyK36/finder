@@ -1,0 +1,31 @@
+{
+    "project_info": {
+        "project_number": "596100985193",
+        "project_id": "finder-5313e",
+        "storage_bucket": "finder-5313e.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:596100985193:android:5948c10cf5205750110df8",
+            "android_client_info": {
+                "package_name": "com.ronnykevin.finder"
+            }
+        },
+        "oauth_client": [{
+            "client_id": "596100985193-80o93108gov2u2thk551k5p5gb92b5l1.apps.googleusercontent.com",
+            "client_type": 3
+        }],
+        "api_key": [{
+            "current_key": "AIzaSyAWFho06i40CmdnDx198RbOuMYDFULEu2M"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "596100985193-80o93108gov2u2thk551k5p5gb92b5l1.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
+        }
+    }],
+    "configuration_version": "1"
+}

@@ -1,4 +1,5 @@
 import 'package:finder/config/configurations.dart';
+import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/reset_password.dart';
 import 'package:finder/views/screens/sign_up_screen.dart';
 import 'package:finder/widgets/reusable_button.dart';
@@ -19,6 +20,7 @@ class SignInButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _authController = Get.find<AuthController>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -39,6 +41,7 @@ class SignInButtons extends StatelessWidget {
             if (formKey.currentState!.validate()) {
               String email = emailController.text.trim();
               String password = passwordController.text.trim();
+              _authController.login(email, password);
             }
           },
         ),

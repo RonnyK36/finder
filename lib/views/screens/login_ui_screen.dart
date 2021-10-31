@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finder/config/configurations.dart';
+import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/widgets/sign_in_form.dart';
 import 'package:finder/widgets/login_header.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // import 'package:flutter_svg/svg.dart';
 

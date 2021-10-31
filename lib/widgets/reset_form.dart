@@ -1,7 +1,9 @@
 import 'package:finder/config/configurations.dart';
+import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/widgets/reusable_button.dart';
 import 'package:finder/widgets/rounded_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResetForm extends StatefulWidget {
   ResetForm({required this.emailController});
@@ -16,6 +18,7 @@ class _ResetFormState extends State<ResetForm> {
 
   @override
   Widget build(BuildContext context) {
+    final _authController = Get.find<AuthController>();
     return Form(
       key: _formKey,
       child: Padding(
@@ -53,6 +56,7 @@ class _ResetFormState extends State<ResetForm> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   String email = _emailController.text.trim();
+                  _authController.resetPassword(email);
                 }
               },
             ),

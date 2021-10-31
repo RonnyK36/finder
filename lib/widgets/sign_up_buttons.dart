@@ -1,4 +1,5 @@
 import 'package:finder/config/configurations.dart';
+import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/login_ui_screen.dart';
 
 import 'package:finder/widgets/reusable_button.dart';
@@ -8,12 +9,14 @@ import 'package:get/get.dart';
 class SignUpButtons extends StatelessWidget {
   const SignUpButtons({
     required GlobalKey<FormState> formKey,
+    required bool isTenant,
     required TextEditingController emailController,
     required TextEditingController phoneController,
     required TextEditingController nameController,
     required TextEditingController passwordController,
     required TextEditingController confrimPasswordController,
   })  : _formKey = formKey,
+        _isTenant = isTenant,
         _nameController = nameController,
         _phoneController = phoneController,
         _emailController = emailController,
@@ -24,9 +27,12 @@ class SignUpButtons extends StatelessWidget {
   final TextEditingController _phoneController;
   final TextEditingController _nameController;
   final TextEditingController _passwordController;
+  final bool _isTenant;
 
   @override
   Widget build(BuildContext context) {
+    final _authController = Get.find<AuthController>();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -44,6 +50,8 @@ class SignUpButtons extends StatelessWidget {
               String phone = _phoneController.text.trim();
               String email = _emailController.text.trim();
               String password = _passwordController.text.trim();
+              bool isTenant = _isTenant;
+              _authController.signUp(name, phone, email, password, isTenant);
             }
           },
         ),

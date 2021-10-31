@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finder/config/configurations.dart';
+import 'package:finder/controllers/auth_controllers.dart';
+import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final _authController = Get.find<AuthController>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -20,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(top: 10),
         child: Column(
           children: [
+            Text('Hello ${_authController.displayName.toString()}'),
             CarouselSlider(
                 items: [
                   Container(
@@ -41,6 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   autoPlayInterval: Duration(seconds: 4),
                   autoPlayAnimationDuration: Duration(seconds: 2),
                 )),
+            reusableButton(
+              context,
+              onPressed: () => _authController.signOut(),
+              label: 'Logout',
+              padding: EdgeInsets.all(10),
+            ),
           ],
         ),
       ),
