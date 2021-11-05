@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               Container(
-                height: Config.screenHeight! * 0.25,
+                height: Config.screenHeight! * 0.22,
                 width: double.infinity,
                 color: Color(0xffffffff),
                 child: CarouselSlider(

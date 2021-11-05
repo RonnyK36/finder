@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/landing_page.dart';
 import 'package:finder/views/screens/root.dart';
@@ -7,15 +8,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
+final tenantsRef = FirebaseFirestore.instance.collection('tenants');
+
 class AuthController extends GetxController {
   var displayName = '';
+  String phone = '';
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  String userMode = '';
   User? get userProfile => auth.currentUser;
 
   @override
   void onInit() {
+    getTenants();
     displayName = userProfile != null ? userProfile!.displayName! : '';
     super.onInit();
+  }
+
+  getTenants() {
+    tenantsRef.get();
   }
 
   void signUp(
@@ -27,15 +38,26 @@ class AuthController extends GetxController {
   ) {
     try {
       auth
-          .createUserWithEmailAndPassword(email: email, password: password)
+          .createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      )
           .then((value) {
         displayName = name;
         phone = phone;
-        // userMode = isTenant ? 'Tenant' : 'Landlord';
+        userMode = isTenant ? 'Tenant' : 'Landlord';
         auth.currentUser!.updateDisplayName(name);
       });
       update();
+
       Get.offAll(() => Root());
+      Get.snackbar(
+        'Welcome $displayName,',
+        'Your account has been created. Please wait as we log you in',
+        backgroundColor: kAccentColor,
+        duration: Duration(seconds: 6),
+        colorText: Colors.white,
+      );
     } on FirebaseAuthException catch (e) {
       String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';
@@ -49,8 +71,8 @@ class AuthController extends GetxController {
       Get.snackbar(
         title,
         message,
-        backgroundColor: kAccentColor,
-        colorText: Colors.white,
+        backgroundColor: Colors.white,
+        colorText: kAccentColor,
       );
     } catch (e) {
       Get.snackbar(
@@ -140,6 +162,7 @@ class AuthController extends GetxController {
     }
   }
 }
+
   // extention StringExtension; on String{
   //   String capitalizeString(){
   //     return '${this[0].toUpperCase()${this.subString[1]}}';

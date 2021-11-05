@@ -30,6 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   setSelectedRadio(val) {
     setState(() {
       selectedRadio = val;
+      isTenant = !isTenant;
     });
   }
 
@@ -47,8 +48,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // Header of page
-                // TitleSection(title: 'Create an account'),
                 buildFormFileds(),
               ],
             ),
@@ -158,7 +157,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                         },
                         labelText: "Email",
-                        keyboardType: TextInputType.visiblePassword,
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       RoundedTextFormField(
                         controller: _passwordController,

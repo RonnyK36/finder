@@ -49,9 +49,9 @@ class _ResetFormState extends State<ResetForm> {
             ),
             reusableButton(
               context,
-              padding: EdgeInsets.symmetric(
-                  horizontal: Config.screenWidth! * 0.35,
-                  vertical: Config.screenHeight! * 0.015),
+              // padding: EdgeInsets.symmetric(
+              //     horizontal: Config.screenWidth! * 0.35,
+              //     vertical: Config.screenHeight! * 0.015),
               label: 'Reset',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

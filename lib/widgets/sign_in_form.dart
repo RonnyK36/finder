@@ -21,7 +21,7 @@ class _SignInFormState extends State<SignInForm> {
       elevation: 3,
       shadowColor: kAccentColor,
       child: Container(
-        height: Config.screenHeight! * 0.5,
+        height: Config.screenHeight! * 0.55,
         child: Form(
           key: _formKey,
           child: Padding(

@@ -38,9 +38,9 @@ class SignUpButtons extends StatelessWidget {
       children: [
         reusableButton(
           context,
-          padding: EdgeInsets.symmetric(
-              horizontal: Config.screenWidth! * 0.35,
-              vertical: Config.screenHeight! * 0.015),
+          // padding: EdgeInsets.symmetric(
+          //     horizontal: Config.screenWidth! * 0.35,
+          //     vertical: Config.screenHeight! * 0.015),
           label: 'Sign up',
           onPressed: () {
             print(_nameController.text.capitalize);

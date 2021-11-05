@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
+import 'package:finder/models/users.dart';
 import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,47 +14,93 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool? showInfo;
   @override
   Widget build(BuildContext context) {
     final _authController = Get.find<AuthController>();
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            Text('Hello ${_authController.displayName.toString()}'),
-            CarouselSlider(
-                items: [
-                  Container(
-                    height: Config.screenHeight! * 0.18,
-                    color: Colors.green,
-                  ),
-                  Container(
-                    height: Config.screenHeight! * 0.18,
-                    color: Colors.red,
-                  ),
-                  Container(
-                    height: Config.screenHeight! * 0.18,
-                    color: Colors.blue,
-                  ),
-                ],
-                options: CarouselOptions(
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 4),
-                  autoPlayAnimationDuration: Duration(seconds: 2),
-                )),
-            reusableButton(
-              context,
-              onPressed: () => _authController.signOut(),
-              label: 'Logout',
-              padding: EdgeInsets.all(10),
-            ),
-          ],
-        ),
+      // appBar: AppBar(title: Text('Home')),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Text('Holla'),
+          // Text(
+          //   'Hello ${_authController.userProfile!.displayName.toString()},',
+          //   style: kUbuntu15,
+          // ),
+          // Text(
+          //   'Your email is: ${_authController.userProfile!.email.toString()}',
+          //   style: kUbuntu15,
+          // ),
+          // Text(_authController.phone.toString()),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: showInfo == true
+          //       ? Container(
+          //           height: 150,
+          //           child: Text(
+          //             'Uid: ${_authController.userProfile!.uid.toString()}\nDisplayname: ${_authController.userProfile!.displayName.toString()}',
+          //             style: kUbuntu15,
+          //           ),
+          //         )
+          //       : Container(),
+          // ),
+          // CarouselSlider(
+          //     items: [
+          //       Container(
+          //         height: Config.screenHeight! * 0.18,
+          //         decoration: BoxDecoration(
+          //           color: Colors.green,
+          //           borderRadius: BorderRadius.circular(20),
+          //         ),
+          //       ),
+          //       Container(
+          //         height: Config.screenHeight! * 0.18,
+          //         color: Colors.red,
+          //       ),
+          //       Container(
+          //         height: Config.screenHeight! * 0.18,
+          //         color: Colors.blue,
+          //       ),
+          //     ],
+          //     options: CarouselOptions(
+          //       enlargeCenterPage: true,
+          //       autoPlay: true,
+          //       autoPlayInterval: Duration(seconds: 4),
+          //       autoPlayAnimationDuration: Duration(seconds: 2),
+          //     )),
+          // reusableButton(
+          //   context,
+          //   onPressed: () {
+          //     setState(() {
+          //       showInfo = !showInfo!;
+          //     });
+          //   },
+          //   label: showInfo == false ? 'Get my Info' : 'Hide info',
+          //   padding: EdgeInsets.symmetric(
+          //     horizontal: Config.screenWidth! * 0.30,
+          //     vertical: Config.screenWidth! * 0.025,
+          //   ),
+          // ),
+          reusableButton(
+            context,
+            onPressed: () => _authController.signOut(),
+            label: 'Logout',
+          ),
+          SizedBox(height: 10),
+          reusableButton(
+            context,
+            onPressed: () {},
+            label: 'Sign up ',
+          ),
+          reusableButton(
+            context,
+            onPressed: () {},
+            label: 'Sign in',
+          ),
+        ],
       ),
     );
   }
