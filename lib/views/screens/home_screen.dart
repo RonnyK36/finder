@@ -20,9 +20,14 @@ class _HomeScreenState extends State<HomeScreen> {
     final _authController = Get.find<AuthController>();
 
     return Scaffold(
-      // appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(
+        title: Text(
+          _authController.userProfile!.displayName.toString(),
+          style: kUbuntu15.copyWith(fontSize: 25),
+        ),
+      ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Text('Holla'),
@@ -84,22 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
           //     vertical: Config.screenWidth! * 0.025,
           //   ),
           // ),
-          reusableButton(
-            context,
-            onPressed: () => _authController.signOut(),
-            label: 'Logout',
-          ),
+
           SizedBox(height: 10),
-          reusableButton(
-            context,
-            onPressed: () {},
-            label: 'Sign up ',
-          ),
-          reusableButton(
-            context,
-            onPressed: () {},
-            label: 'Sign in',
-          ),
         ],
       ),
     );

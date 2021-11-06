@@ -40,9 +40,6 @@ class LandingPage extends StatelessWidget {
               reusableButton(
                 context,
                 onPressed: () => Get.to(() => Root()),
-                // padding: EdgeInsets.symmetric(
-                //     horizontal: Config.screenWidth! * 0.3,
-                //     vertical: Config.screenHeight! * 0.015),
                 label: 'Get started',
               ),
               Spacer(),
