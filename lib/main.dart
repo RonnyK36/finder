@@ -1,6 +1,7 @@
 import 'package:finder/views/screens/bottom_navigation.dart';
 import 'package:finder/views/screens/landing_page.dart';
 import 'package:finder/views/screens/login_ui_screen.dart';
+import 'package:finder/views/screens/root.dart';
 import 'package:finder/widgets/controller_bindings.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xff0d47a1),
         accentColor: Color(0xff6061fa),
       ),
-      home: LoginPage(),
+      home: Root(),
     );
   }
 }

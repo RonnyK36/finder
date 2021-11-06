@@ -47,12 +47,13 @@ class AuthController extends GetxController {
         phone = phone;
         userMode = isTenant ? 'Tenant' : 'Landlord';
         auth.currentUser!.updateDisplayName(name);
+        auth.currentUser!.linkWithPhoneNumber(phone);
       });
       update();
 
       Get.offAll(() => Root());
       Get.snackbar(
-        'Welcome $displayName,',
+        'Welcome ${userProfile!.displayName.toString()}',
         'Your account has been created. Please wait as we log you in',
         backgroundColor: kAccentColor,
         duration: Duration(seconds: 6),
@@ -93,6 +94,16 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {});
       update();
+
+      Get.offAll(() => Root());
+      Get.snackbar(
+        'Welcome back ${userProfile!.displayName.toString()}',
+        'Let\'pick up where we left off. Shall we?',
+        backgroundColor: Colors.white,
+        colorText: kPrimaryColor,
+        overlayBlur: 5,
+        duration: Duration(seconds: 4),
+      );
     } on FirebaseAuthException catch (e) {
       String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';

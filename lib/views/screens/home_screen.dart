@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           _authController.userProfile!.displayName.toString(),
           style: kUbuntu15.copyWith(fontSize: 25),
