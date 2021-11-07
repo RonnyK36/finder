@@ -1,4 +1,5 @@
 import 'package:finder/config/configurations.dart';
+import 'package:finder/views/screens/apartments.dart';
 import 'package:finder/views/screens/home_screen.dart';
 import 'package:finder/views/screens/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ class NavigationManager extends StatefulWidget {
 class _NavigationManagerState extends State<NavigationManager> {
   int currentIndex = 0;
   final screens = [
+    // Center(child: Text('Apartments')),
+    Apartments(),
+    Center(child: Text('Search')),
     HomeScreen(),
-    Center(child: Text('Apartments')),
-    Center(child: Text('Hostels')),
     ProfilePage(),
   ];
   @override
@@ -38,18 +40,18 @@ class _NavigationManagerState extends State<NavigationManager> {
         items: [
           BottomNavigationBarItem(
             backgroundColor: kAccentColor,
-            icon: Icon(Icons.trending_up),
-            label: 'Trending',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
-            icon: Icon(Icons.shop),
+            icon: Icon(Icons.home),
             label: 'Appartments',
           ),
           BottomNavigationBarItem(
             backgroundColor: kAccentColor,
-            icon: Icon(Icons.house),
-            label: 'Hostels',
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: kAccentColor,
+            icon: Icon(Icons.shop),
+            label: 'Trending',
           ),
           BottomNavigationBarItem(
             backgroundColor: kAccentColor,

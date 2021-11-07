@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
+import 'package:finder/views/screens/add_info.dart';
 import 'package:finder/views/screens/landing_page.dart';
 import 'package:finder/views/screens/root.dart';
 
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 final tenantsRef = FirebaseFirestore.instance.collection('tenants');
+final landLordsRef = FirebaseFirestore.instance.collection('landlords');
 
 class AuthController extends GetxController {
   var displayName = '';
@@ -47,18 +49,18 @@ class AuthController extends GetxController {
         phone = phone;
         userMode = isTenant ? 'Tenant' : 'Landlord';
         auth.currentUser!.updateDisplayName(name);
-        auth.currentUser!.linkWithPhoneNumber(phone);
+
+        createUserInFirestore(phone);
       });
       update();
 
-      Get.offAll(() => Root());
-      Get.snackbar(
-        'Welcome ${userProfile!.displayName.toString()}',
-        'Your account has been created. Please wait as we log you in',
-        backgroundColor: kAccentColor,
-        duration: Duration(seconds: 6),
-        colorText: Colors.white,
-      );
+      // Get.snackbar(
+      //   'Welcome ${userProfile!.displayName.toString()}',
+      //   'Your account has been created. Please wait as we log you in',
+      //   backgroundColor: kAccentColor,
+      //   duration: Duration(seconds: 6),
+      //   colorText: Colors.white,
+      // );
     } on FirebaseAuthException catch (e) {
       String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';
@@ -76,12 +78,53 @@ class AuthController extends GetxController {
         colorText: kAccentColor,
       );
     } catch (e) {
-      Get.snackbar(
-        'Error occured!',
-        e.toString(),
-        backgroundColor: kAccentColor,
-        colorText: Colors.white,
-      );
+      print(e.toString());
+      // Get.snackbar(
+      //   'Error occured!',
+      //   e.toString(),
+      //   backgroundColor: kAccentColor,
+      //   colorText: Colors.white,
+      // );
+    }
+  }
+
+  createUserInFirestore(String phone) async {
+    final User user = userProfile!;
+    if (userMode == 'Tenant') {
+      final doc = await tenantsRef.doc(user.uid).get();
+      if (!doc.exists) {
+        print('Creating tenant');
+        final phone = await Get.to(() => AdditionaInfo());
+        tenantsRef.doc(user.uid).set({
+          "id": user.uid,
+          "userMode": userMode,
+          "displayName": displayName,
+          "email": user.email,
+          "phone": phone,
+        });
+        Get.offAll(() => Root());
+        Get.snackbar(
+          'Welcome ${userProfile!.displayName.toString()}',
+          'Your account has been created. Please wait as we log you in',
+          backgroundColor: kAccentColor,
+          duration: Duration(seconds: 6),
+          colorText: Colors.white,
+        );
+      }
+    } else if (userMode == 'Landlord') {
+      final doc = await landLordsRef.doc(user.uid).get();
+      if (!doc.exists) {
+        print('Creating Landlord');
+        final phone = await Get.to(() => AdditionaInfo());
+        landLordsRef.doc(user.uid).set({
+          "id": user.uid,
+          "userMode": userMode,
+          "email": user.email,
+          "displayName": displayName,
+          "phone": phone,
+        });
+        Get.offAll(() => Root());
+      }
     }
   }
 
