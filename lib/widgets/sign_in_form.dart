@@ -21,25 +21,42 @@ class _SignInFormState extends State<SignInForm> {
       elevation: 3,
       shadowColor: kAccentColor,
       child: Container(
-        height: Config.screenHeight! * 0.55,
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  buildTextFormFields(),
-                  SignInButtons(
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                    formKey: _formKey,
-                  ),
-                ],
+        height: Config.screenHeight! * 0.5,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: Config.screenWidth! * 0.03),
+                child: Text(
+                  'Log in if you have an account',
+                  style: kUbuntu15.copyWith(fontSize: 20, color: kAccentColor),
+                ),
               ),
             ),
-          ),
+            SizedBox(height: Config.screenHeight! * 0.006),
+            Form(
+              key: _formKey,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      buildTextFormFields(),
+                      SignInButtons(
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        formKey: _formKey,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

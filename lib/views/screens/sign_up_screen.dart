@@ -18,6 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
   bool isTenant = true;
+  bool showHint = true;
 
   late int selectedRadio;
 
@@ -68,47 +69,75 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Radio(
-                        value: 1,
-                        groupValue: selectedRadio,
-                        onChanged: (val) {
-                          print('Tenant');
-                          setState(() {
-                            isTenant = true;
-                          });
-                          setSelectedRadio(val);
-                        },
+                      Row(
+                        children: [
+                          Radio(
+                            value: 1,
+                            groupValue: selectedRadio,
+                            onChanged: (val) {
+                              print('Tenant');
+                              setState(() {
+                                isTenant = true;
+                                showHint = false;
+                              });
+                              setSelectedRadio(val);
+                            },
+                          ),
+                          Text(
+                            'Tenant',
+                            style: kUbuntu15,
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Tenant',
-                        style: kUbuntu15,
+                      Row(
+                        children: [
+                          Radio(
+                            value: 2,
+                            groupValue: selectedRadio,
+                            onChanged: (val) {
+                              print('Landlord');
+                              setState(() {
+                                isTenant = false;
+                                showHint = false;
+                              });
+                              setSelectedRadio(val);
+                            },
+                          ),
+                          Text(
+                            'Landlord',
+                            style: kUbuntu15,
+                          ),
+                        ],
                       ),
+                      SizedBox(
+                        width: Config.screenWidth! * 0.02,
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            setState(() {
+                              showHint = !showHint;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.info,
+                            size: 17,
+                          )),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Radio(
-                        value: 2,
-                        groupValue: selectedRadio,
-                        onChanged: (val) {
-                          print('Landlord');
-                          setState(() {
-                            isTenant = false;
-                          });
-                          setSelectedRadio(val);
-                        },
-                      ),
-                      Text(
-                        'Landlord',
-                        style: kUbuntu15,
-                      ),
-                    ],
-                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        showHint
+                            ? 'Are you a tenant or landlord? Default is tenant.'
+                            : '',
+                        style: kUbuntu15.copyWith(
+                            fontSize: 13, color: Colors.green)),
+                  )
                 ],
               ),
               Form(

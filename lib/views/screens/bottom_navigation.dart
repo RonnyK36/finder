@@ -2,6 +2,7 @@ import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/apartments.dart';
 import 'package:finder/views/screens/home_screen.dart';
 import 'package:finder/views/screens/profile_page.dart';
+import 'package:finder/views/screens/search.dart';
 import 'package:flutter/material.dart';
 
 class NavigationManager extends StatefulWidget {
@@ -14,10 +15,9 @@ class NavigationManager extends StatefulWidget {
 class _NavigationManagerState extends State<NavigationManager> {
   int currentIndex = 0;
   final screens = [
-    // Center(child: Text('Apartments')),
     Apartments(),
-    Center(child: Text('Search')),
-    HomeScreen(),
+    Search(),
+    HomeScreen(), // trending page
     ProfilePage(),
   ];
   @override

@@ -124,6 +124,14 @@ class AuthController extends GetxController {
           "phone": phone,
         });
         Get.offAll(() => Root());
+        Get.snackbar(
+          'Welcome ${userProfile!.displayName.toString()},',
+          'You are a landlord, take a minute or two to fill us in. ',
+          backgroundColor: kAccentColor,
+          duration: Duration(seconds: 6),
+          overlayBlur: 5,
+          colorText: Colors.white,
+        );
       }
     }
   }
@@ -142,8 +150,8 @@ class AuthController extends GetxController {
       Get.snackbar(
         'Welcome back ${userProfile!.displayName.toString()}',
         'Let\'pick up where we left off. Shall we?',
-        backgroundColor: Colors.white,
-        colorText: kPrimaryColor,
+        backgroundColor: kAccentColor,
+        colorText: Colors.white,
         overlayBlur: 5,
         duration: Duration(seconds: 4),
       );
@@ -162,6 +170,7 @@ class AuthController extends GetxController {
         message,
         backgroundColor: kAccentColor,
         colorText: Colors.white,
+        duration: Duration(seconds: 4),
       );
     } catch (e) {
       Get.snackbar(
@@ -169,6 +178,7 @@ class AuthController extends GetxController {
         e.toString(),
         backgroundColor: kAccentColor,
         colorText: Colors.white,
+        duration: Duration(seconds: 4),
       );
     }
   }
@@ -187,8 +197,9 @@ class AuthController extends GetxController {
       Get.snackbar(
         title,
         message,
-        backgroundColor: kAccentColor,
-        colorText: Colors.white,
+        backgroundColor: Colors.white,
+        colorText: kAccentColor,
+        duration: Duration(seconds: 4),
       );
     } catch (e) {
       Get.snackbar(

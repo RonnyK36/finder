@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/widgets/reusable_button.dart';
@@ -12,7 +14,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool showInfo = false;
+  bool showInfo = true;
 
   final _authController = Get.find<AuthController>();
   @override
@@ -54,8 +56,24 @@ class _ProfilePageState extends State<ProfilePage> {
                       horizontal: Config.screenWidth! * 0.02),
                   child: Row(
                     children: [
-                      CircleAvatar(maxRadius: Config.screenWidth! * 0.1),
-                      SizedBox(width: Config.screenWidth! * 0.25),
+                      GestureDetector(
+                        onTap: () {
+                          print('Change profile');
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Colors.primaries[
+                              Random().nextInt(Colors.primaries.length)],
+                          maxRadius: Config.screenWidth! * 0.1,
+                          child: Text(
+                            _authController.userProfile!.displayName
+                                .toString()[0],
+                            style: kUbuntu15.copyWith(
+                              fontSize: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: Config.screenWidth! * 0.05),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -63,6 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             _authController.userProfile!.displayName.toString(),
                             style: kUbuntu15.copyWith(fontSize: 25),
                           ),
+                          SizedBox(height: Config.screenHeight! * 0.006),
                           Text(
                             _authController.userProfile!.email.toString(),
                             style: kUbuntu15,
@@ -91,19 +110,20 @@ class _ProfilePageState extends State<ProfilePage> {
                         subtitle: 'Email',
                         iconData: Icons.email,
                       ),
-                      ProfileCard(
-                        title:
-                            _authController.userProfile!.phoneNumber.toString(),
-                        subtitle: 'Phone',
-                        iconData: Icons.phone,
-                      ),
-                      ProfileCard(
-                        title: _authController.userMode.toString(),
-                        subtitle: 'Phone',
-                        iconData: Icons.mode,
-                      ),
+                      // ProfileCard(
+                      //   title:
+                      //       _authController.userProfile!.phoneNumber.toString(),
+                      //   subtitle: 'Phone',
+                      //   iconData: Icons.phone,
+                      // ),
+                      // ProfileCard(
+                      //   title: _authController.userMode.toString(),
+                      //   subtitle: 'Phone',
+                      //   iconData: Icons.mode,
+                      // ),
                     ],
                   ),
+            SizedBox(height: Config.screenHeight! * 0.006),
             Text('By Nerdy Approach Co', style: kUbuntu15),
           ],
         ),

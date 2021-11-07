@@ -30,28 +30,6 @@ class _LoginPageState extends State<LoginPage> {
                 title: 'Hello comrade,',
               ),
 
-              // Container(
-              //   height: Config.screenHeight! * 0.22,
-              //   width: double.infinity,
-              //   color: Color(0xffffffff),
-              //   child: CarouselSlider(
-              //       items: [
-              //         Container(
-              //           height: Config.screenHeight! * 0.18,
-              //           color: Colors.green,
-              //         ),
-              //         Container(
-              //           height: Config.screenHeight! * 0.18,
-              //           color: Colors.amber,
-              //         ),
-              //       ],
-              //       options: CarouselOptions(
-              //         enlargeCenterPage: true,
-              //         autoPlay: true,
-              //         autoPlayInterval: Duration(seconds: 4),
-              //         autoPlayAnimationDuration: Duration(seconds: 2),
-              //       )),
-              // ),
               // SizedBox(height: Config.screenHeight! * 0.02),
               SignInForm(),
             ],
