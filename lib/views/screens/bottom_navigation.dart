@@ -1,9 +1,11 @@
 import 'package:finder/config/configurations.dart';
+import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/apartments.dart';
 import 'package:finder/views/screens/home_screen.dart';
 import 'package:finder/views/screens/profile_page.dart';
 import 'package:finder/views/screens/search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NavigationManager extends StatefulWidget {
   const NavigationManager({Key? key}) : super(key: key);
@@ -20,8 +22,29 @@ class _NavigationManagerState extends State<NavigationManager> {
     HomeScreen(), // trending page
     ProfilePage(),
   ];
+  final _auth = Get.find<AuthController>();
+  bool isTenant = true;
+  tenantVsLandlord() {
+    if (_auth.userMode == 'Tenant') {
+      print(_auth.userMode);
+      setState(() {
+        isTenant = true;
+      });
+    } else if (_auth.userMode == 'Landlord') {
+      print(_auth.userMode);
+      setState(() {
+        isTenant = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // return buildTenantView();
+    return !isTenant ? Scaffold() : buildTenantView();
+  }
+
+  Scaffold buildTenantView() {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(

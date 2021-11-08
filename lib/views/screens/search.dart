@@ -13,7 +13,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kPrimaryColor,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -34,17 +34,20 @@ class _SearchState extends State<Search> {
       ),
       body: SafeArea(
         child: Container(
-          child: ListView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                'assets/images/upload.svg',
+                'assets/images/search.svg',
                 height: Config.screenHeight! * 0.5,
               ),
-              Center(
+              Align(
+                alignment: Alignment.center,
                 child: Text(
                   'Find verified Landlords',
                   style: kUbuntu15.copyWith(
-                    fontSize: 35,
+                    fontSize: 30,
                   ),
                 ),
               ),
