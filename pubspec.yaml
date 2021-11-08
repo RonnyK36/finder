@@ -14,7 +14,7 @@ dependencies:
   get: ^4.3.8
   cloud_firestore: ^2.5.3
   google_fonts: ^2.1.0
-  flutter_svg: ^0.23.0+1
+  # flutter_svg: ^0.23.0+1
   firebase_core: ^1.8.0
   firebase_auth: ^3.1.4
 
@@ -27,21 +27,31 @@ dependencies:
   # firebase_messaging: ^4.0.0+1
   # timeago: 2.0.17
   # cached_network_image:
-  # flutter_svg: ^0.23.0+1
+  flutter_svg: 0.22.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
     
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images
-    
   fonts:
-    - family: NotoSansMono-Regular.ttf
+    - family: Signatra
       fonts:
-        - asset: assets\NotoSansMono-Regular.ttf
+        - asset: assets/NotoSansMono-Regular.ttf
+  assets:
+    - assets/images/
+    - images/
+# flutter:
+#   uses-material-design: true
+#   assets:
+#     - assets/images
+    
+#   fonts:
+#     - family: NotoSansMono-Regular.ttf
+#       fonts:
+#         - asset: assets\NotoSansMono-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

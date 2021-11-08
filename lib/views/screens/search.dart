@@ -32,15 +32,22 @@ class _SearchState extends State<Search> {
           ),
         ),
       ),
-      body: Container(
-        child: Center(
+      body: SafeArea(
+        child: Container(
           child: ListView(
             children: [
               SvgPicture.asset(
-                'assets/images/search.svg',
-                height: 300,
+                'assets/images/upload.svg',
+                height: Config.screenHeight! * 0.5,
               ),
-              Text('Find verified Landlords')
+              Center(
+                child: Text(
+                  'Find verified Landlords',
+                  style: kUbuntu15.copyWith(
+                    fontSize: 35,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
