@@ -25,6 +25,7 @@ class RoundedTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
       controller: controller,
       obscureText: isObscure,

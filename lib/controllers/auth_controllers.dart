@@ -11,6 +11,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 final tenantsRef = FirebaseFirestore.instance.collection('tenants');
 final landLordsRef = FirebaseFirestore.instance.collection('landlords');
+final DateTime timeStamp = DateTime.now();
 
 class AuthController extends GetxController {
   var displayName = '';
@@ -101,11 +102,12 @@ class AuthController extends GetxController {
           "displayName": displayName,
           "email": user.email,
           "phone": phone,
+          "timeStamp": timeStamp
         });
         Get.offAll(() => Root());
         Get.snackbar(
           'Welcome ${userProfile!.displayName.toString()}',
-          'Your account has been created. Please wait as we log you in',
+          'Let us get a few things ready for you.',
           backgroundColor: kAccentColor,
           duration: Duration(seconds: 6),
           colorText: Colors.white,
@@ -122,6 +124,7 @@ class AuthController extends GetxController {
           "email": user.email,
           "displayName": displayName,
           "phone": phone,
+          "timeStamp": timeStamp
         });
         Get.offAll(() => Root());
         Get.snackbar(
@@ -228,7 +231,7 @@ class AuthController extends GetxController {
   }
 }
 
-  // extention StringExtension; on String{
+  // extention StringExtension on String{
   //   String capitalizeString(){
   //     return '${this[0].toUpperCase()${this.subString[1]}}';
   //   }

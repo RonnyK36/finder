@@ -1,6 +1,3 @@
-import 'package:finder/views/screens/bottom_navigation.dart';
-import 'package:finder/views/screens/landing_page.dart';
-import 'package:finder/views/screens/login_ui_screen.dart';
 import 'package:finder/views/screens/root.dart';
 import 'package:finder/widgets/controller_bindings.dart';
 import 'package:firebase_core/firebase_core.dart';

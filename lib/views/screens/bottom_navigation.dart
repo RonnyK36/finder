@@ -50,7 +50,7 @@ class _NavigationManagerState extends State<NavigationManager> {
           ),
           BottomNavigationBarItem(
             backgroundColor: kAccentColor,
-            icon: Icon(Icons.shop),
+            icon: Icon(Icons.whatshot),
             label: 'Trending',
           ),
           BottomNavigationBarItem(

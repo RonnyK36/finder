@@ -1,8 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
-import 'package:finder/models/users.dart';
-import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

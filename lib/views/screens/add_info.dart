@@ -1,5 +1,5 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/controllers/auth_controllers.dart';
+
 import 'package:finder/widgets/reusable_button.dart';
 import 'package:finder/widgets/rounded_text_form_field.dart';
 import 'package:flutter/material.dart';
