@@ -48,6 +48,7 @@ class _SearchState extends State<Search> {
                   'Find verified Landlords',
                   style: kUbuntu15.copyWith(
                     fontSize: 30,
+                    color: Colors.white,
                   ),
                 ),
               ),

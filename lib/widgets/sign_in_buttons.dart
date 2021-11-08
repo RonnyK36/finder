@@ -33,9 +33,6 @@ class SignInButtons extends StatelessWidget {
         ),
         reusableButton(
           context,
-          // padding: EdgeInsets.symmetric(
-          //     horizontal: Config.screenWidth! * 0.35,
-          //     vertical: Config.screenHeight! * 0.015),
           label: 'Login',
           onPressed: () {
             if (formKey.currentState!.validate()) {

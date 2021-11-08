@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: Config.screenHeight! * 0.95,
+          // height: Config.screenHeight! * 0.95,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
                 title: 'Hello comrade,',
               ),
 
-              // SizedBox(height: Config.screenHeight! * 0.02),
+              SizedBox(height: Config.screenHeight! * 0.08),
               SignInForm(),
             ],
           ),

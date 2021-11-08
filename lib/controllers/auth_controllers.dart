@@ -3,6 +3,7 @@ import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/add_info.dart';
 import 'package:finder/views/screens/landing_page.dart';
 import 'package:finder/views/screens/root.dart';
+import 'package:finder/widgets/loading.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -148,16 +149,19 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {});
       update();
-
-      Get.offAll(() => Root());
-      Get.snackbar(
-        'Welcome back ${userProfile!.displayName.toString()}',
-        'Let\'pick up where we left off. Shall we?',
-        backgroundColor: kAccentColor,
-        colorText: Colors.white,
-        overlayBlur: 5,
-        duration: Duration(seconds: 4),
-      );
+      if (auth.currentUser == null) {
+        Loading();
+      } else {
+        Get.offAll(() => Root());
+        Get.snackbar(
+          'Welcome back ${userProfile!.displayName.toString()}',
+          'Let\'pick up where we left off. Shall we?',
+          backgroundColor: kAccentColor,
+          colorText: Colors.white,
+          overlayBlur: 5,
+          duration: Duration(seconds: 4),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';

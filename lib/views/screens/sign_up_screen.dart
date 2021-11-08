@@ -162,20 +162,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         labelText: "Username",
                         keyboardType: TextInputType.name,
                       ),
-                      // RoundedTextFormField(
-                      //   controller: _phoneController,
-                      //   isObscure: false,
-                      //   icon: Icons.phone,
-                      //   validator: (val) {
-                      //     if (val.toString().length != 10) {
-                      //       return 'Invalid phone number';
-                      //     } else {
-                      //       return null;
-                      //     }
-                      //   },
-                      //   labelText: "Phone",
-                      //   keyboardType: TextInputType.number,
-                      // ),
                       RoundedTextFormField(
                         controller: _emailController,
                         isObscure: false,
