@@ -30,20 +30,25 @@ class _DetailsPageState extends State<DetailsPage> {
       body: Container(
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: Config.screenHeight! * 0.5,
                 width: double.infinity,
-                child: Image.asset(widget.image),
+                child: Image.asset(
+                  widget.image,
+                  fit: BoxFit.contain,
+                ),
               ),
               Row(
                 children: [
                   Text(
                     'Location: ',
-                    style: kUbuntu15.copyWith(fontSize: 20),
+                    style:
+                        kUbuntu15.copyWith(fontSize: 20, color: kAccentColor),
                   ),
                   Text(
                     widget.location,
@@ -55,7 +60,8 @@ class _DetailsPageState extends State<DetailsPage> {
                 children: [
                   Text(
                     'Price: ',
-                    style: kUbuntu15.copyWith(fontSize: 20),
+                    style:
+                        kUbuntu15.copyWith(fontSize: 20, color: kAccentColor),
                   ),
                   Text(
                     'KES ${widget.price}',
@@ -67,12 +73,51 @@ class _DetailsPageState extends State<DetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Description: ',
-                      style: kUbuntu15.copyWith(fontSize: 20)),
+                      style: kUbuntu15.copyWith(
+                          fontSize: 20, color: kAccentColor)),
                   Text(
                     widget.description,
                     style: kUbuntu15.copyWith(fontSize: 15),
                   ),
                 ],
+              ),
+              Card(
+                color: kAccentColor,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.book,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Book',
+                        style: kUbuntu15.copyWith(
+                            color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.phone,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Call landlord',
+                        style: kUbuntu15.copyWith(
+                            color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

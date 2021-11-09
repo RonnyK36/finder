@@ -27,7 +27,7 @@ class _ApartmentsState extends State<Apartments> {
                 items: apartmentCard,
                 options: CarouselOptions(
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 6),
+                  autoPlayInterval: Duration(seconds: 10),
                   enlargeCenterPage: true,
                   height: Config.screenHeight! * 0.86,
                   enableInfiniteScroll: false,
@@ -140,7 +140,8 @@ class ApartmentCard extends StatelessWidget {
                         child: Container(
                           width: double.infinity,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 5),
                             child: Column(
                               children: [
                                 Row(
@@ -214,7 +215,7 @@ class ApartmentCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    radius: 30,
+                    radius: 20,
                     backgroundColor: Colors
                         .primaries[Random().nextInt(Colors.primaries.length)],
                   ),
