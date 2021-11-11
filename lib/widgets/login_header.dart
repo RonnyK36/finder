@@ -21,12 +21,26 @@ class TitleSection extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(5.0),
-              child: Text(title!,
-                  style: GoogleFonts.ubuntu(
-                    textStyle: TextStyle(
+              child: Row(
+                children: [
+                  Text(
+                    'Welcome to ',
+                    style: GoogleFonts.ubuntu(
+                      textStyle: TextStyle(
                         fontSize: Config.screenWidth! * 0.1,
-                        color: kPrimaryColor),
-                  )),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    title!,
+                    style: GoogleFonts.ubuntu(
+                      textStyle: TextStyle(
+                          fontSize: Config.screenWidth! * 0.1,
+                          color: kPrimaryColor),
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: Config.screenHeight! * 0.009),
           ],

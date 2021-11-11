@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
+import 'package:finder/models/landlords.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -75,6 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(width: Config.screenWidth! * 0.05),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             _authController.userProfile!.displayName.toString(),
@@ -101,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ProfileCard(
                         title:
                             _authController.userProfile!.displayName.toString(),
-                        subtitle: 'Username',
+                        subtitle: "Username",
                         iconData: Icons.person,
                       ),
                       ProfileCard(
@@ -152,7 +154,7 @@ class ProfileCard extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: kUbuntu15.copyWith(fontSize: 25, color: kPrimaryColor),
+          style: kUbuntu15.copyWith(fontSize: 20, color: kPrimaryColor),
         ),
         selectedTileColor: Colors.amber,
         subtitle: Text(

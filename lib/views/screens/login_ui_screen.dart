@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               // Header of page
               TitleSection(
-                title: 'Hello comrade,',
+                title: 'finder',
               ),
 
               SizedBox(height: Config.screenHeight! * 0.08),

@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
+import 'package:finder/models/landlords.dart';
+import 'package:finder/models/tenants.dart';
 import 'package:finder/views/screens/add_info.dart';
 import 'package:finder/views/screens/landing_page.dart';
 import 'package:finder/views/screens/root.dart';
 import 'package:finder/widgets/loading.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -53,16 +56,11 @@ class AuthController extends GetxController {
         auth.currentUser!.updateDisplayName(name);
 
         createUserInFirestore(phone);
+        return isTenant
+            ? _tenantFromFirebaseUser(auth.currentUser!)
+            : _landlordFromFirebaseUser(auth.currentUser!);
       });
       update();
-
-      // Get.snackbar(
-      //   'Welcome ${userProfile!.displayName.toString()}',
-      //   'Your account has been created. Please wait as we log you in',
-      //   backgroundColor: kAccentColor,
-      //   duration: Duration(seconds: 6),
-      //   colorText: Colors.white,
-      // );
     } on FirebaseAuthException catch (e) {
       String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';
@@ -88,6 +86,26 @@ class AuthController extends GetxController {
       //   colorText: Colors.white,
       // );
     }
+  }
+
+  Landlords _landlordFromFirebaseUser(User user) {
+    return Landlords(
+      uid: userProfile!.uid,
+      displayName: userProfile!.displayName!,
+      email: userProfile!.email!,
+      phone: phone,
+      userMode: userMode,
+    );
+  }
+
+  Tenants _tenantFromFirebaseUser(User user) {
+    return Tenants(
+      uid: userProfile!.uid,
+      displayName: userProfile!.displayName!,
+      email: userProfile!.email!,
+      phone: phone,
+      userMode: userMode,
+    );
   }
 
   createUserInFirestore(String phone) async {
