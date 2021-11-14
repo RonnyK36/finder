@@ -1,7 +1,8 @@
 import 'package:finder/models/apartments.dart';
 import 'package:finder/services/database.dart';
-import 'package:finder/widgets/reusable_button.dart';
+import 'package:finder/widgets/components/reusable_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class AddApartment extends StatefulWidget {
@@ -13,7 +14,8 @@ class AddApartment extends StatefulWidget {
 
 class _AddApartmentState extends State<AddApartment> {
   Future<void> _createApartment(context) async {
-    final database = Provider.of<Database>(context);
+    // final database = Provider.of<Database>(context);
+    final database = Get.find<Database>();
     await database.createJob(
       Apartment(
           apartmentId: 'apart_1',

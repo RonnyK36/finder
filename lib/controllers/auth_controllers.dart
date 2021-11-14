@@ -3,10 +3,10 @@ import 'package:finder/config/configurations.dart';
 import 'package:finder/models/landlords.dart';
 import 'package:finder/models/tenants.dart';
 import 'package:finder/models/users.dart';
-import 'package:finder/views/screens/add_info.dart';
-import 'package:finder/views/screens/landing_page.dart';
-import 'package:finder/views/screens/root.dart';
-import 'package:finder/widgets/loading.dart';
+import 'package:finder/views/screens/shared_view/add_info.dart';
+import 'package:finder/views/screens/shared_view/landing_page.dart';
+import 'package:finder/views/screens/auth_views/root.dart';
+import 'package:finder/widgets/components/loading.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

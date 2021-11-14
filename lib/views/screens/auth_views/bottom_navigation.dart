@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
-import 'package:finder/views/screens/add_apartments.dart';
-import 'package:finder/views/screens/apartments.dart';
-import 'package:finder/views/screens/home_screen.dart';
-import 'package:finder/views/screens/profile_page.dart';
-import 'package:finder/views/screens/search.dart';
+import 'package:finder/views/screens/landlord_views/add_apartments.dart';
+import 'package:finder/views/screens/tenant_views/apartments.dart';
+import 'package:finder/views/screens/tenant_views/home_screen.dart';
+import 'package:finder/views/screens/landlord_views/notifications.dart';
+import 'package:finder/views/screens/shared_view/profile_page.dart';
+import 'package:finder/views/screens/tenant_views/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,13 +24,19 @@ class NavigationManager extends StatefulWidget {
 
 class _NavigationManagerState extends State<NavigationManager> {
   int currentIndex = 0;
-  final screens = [
+  final tenantScreens = [
     Apartments(),
     Search(),
-
     HomeScreen(), // trending page
     ProfilePage(),
   ];
+
+  final landlordScreens = [
+    AddApartment(),
+    Notifications(),
+    ProfilePage(),
+  ];
+
   final _auth = Get.find<AuthController>();
 
   bool isTenant = true;
@@ -50,19 +57,60 @@ class _NavigationManagerState extends State<NavigationManager> {
 
   @override
   Widget build(BuildContext context) {
-    // return buildTenantView();
-    return isTenant
-        ? buildTenantView()
-        : Scaffold(
-            body: Container(
-              color: Colors.red,
-            ),
+    // return isTenant ? buildTenantView() : buildLandlordview();
+    return Scaffold(
+      body: GetBuilder<AuthController>(
+        builder: (_) {
+          return SafeArea(
+            child: _.userMode == 'Tenant'
+                ? buildTenantView()
+                : buildLandlordview(),
           );
+        },
+      ),
+    );
+  }
+
+  Scaffold buildLandlordview() {
+    return Scaffold(
+      body: landlordScreens[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 24,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        showUnselectedLabels: true,
+        unselectedFontSize: 9,
+        unselectedLabelStyle: kUbuntu15.copyWith(fontSize: 13),
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: kAccentColor,
+            icon: Icon(Icons.add),
+            label: 'Add new',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: kAccentColor,
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: kAccentColor,
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
+    );
   }
 
   Scaffold buildTenantView() {
     return Scaffold(
-      body: screens[currentIndex],
+      body: tenantScreens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
         selectedItemColor: Colors.white,

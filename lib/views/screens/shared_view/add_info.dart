@@ -1,8 +1,8 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/loading.dart';
+import 'package:finder/widgets/components/loading.dart';
 
-import 'package:finder/widgets/reusable_button.dart';
-import 'package:finder/widgets/rounded_text_form_field.dart';
+import 'package:finder/widgets/components/reusable_button.dart';
+import 'package:finder/widgets/components/rounded_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

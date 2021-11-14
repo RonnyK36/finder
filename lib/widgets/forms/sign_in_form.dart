@@ -1,6 +1,6 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/rounded_text_form_field.dart';
-import 'package:finder/widgets/sign_in_buttons.dart';
+import 'package:finder/widgets/components/rounded_text_form_field.dart';
+import 'package:finder/widgets/components/sign_in_buttons.dart';
 import 'package:flutter/material.dart';
 
 class SignInForm extends StatefulWidget {

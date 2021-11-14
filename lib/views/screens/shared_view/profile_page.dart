@@ -4,8 +4,8 @@ import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/models/landlords.dart';
 import 'package:finder/models/users.dart';
-import 'package:finder/views/screens/add_apartments.dart';
-import 'package:finder/widgets/reusable_button.dart';
+import 'package:finder/views/screens/landlord_views/add_apartments.dart';
+import 'package:finder/widgets/components/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/data/apartments.dart';
-import 'package:finder/views/screens/details_screen.dart';
+import 'package:finder/views/screens/tenant_views/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

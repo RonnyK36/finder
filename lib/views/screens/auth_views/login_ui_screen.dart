@@ -1,5 +1,5 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/sign_in_form.dart';
+import 'package:finder/widgets/forms/sign_in_form.dart';
 import 'package:finder/widgets/login_header.dart';
 import 'package:flutter/material.dart';
 

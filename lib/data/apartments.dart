@@ -1,4 +1,4 @@
-import 'package:finder/views/screens/apartments.dart';
+import 'package:finder/views/screens/tenant_views/apartments.dart';
 import 'package:flutter/material.dart';
 
 final List apartments = [

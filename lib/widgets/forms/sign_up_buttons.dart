@@ -1,8 +1,8 @@
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
-import 'package:finder/views/screens/login_ui_screen.dart';
+import 'package:finder/views/screens/auth_views/login_ui_screen.dart';
 
-import 'package:finder/widgets/reusable_button.dart';
+import 'package:finder/widgets/components/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
