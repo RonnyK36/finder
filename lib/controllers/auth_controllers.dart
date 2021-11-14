@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/models/landlords.dart';
 import 'package:finder/models/tenants.dart';
+import 'package:finder/models/users.dart';
 import 'package:finder/views/screens/add_info.dart';
 import 'package:finder/views/screens/landing_page.dart';
 import 'package:finder/views/screens/root.dart';
@@ -56,9 +57,6 @@ class AuthController extends GetxController {
         auth.currentUser!.updateDisplayName(name);
 
         createUserInFirestore(phone);
-        return isTenant
-            ? _tenantFromFirebaseUser(auth.currentUser!)
-            : _landlordFromFirebaseUser(auth.currentUser!);
       });
       update();
     } on FirebaseAuthException catch (e) {
@@ -86,26 +84,6 @@ class AuthController extends GetxController {
       //   colorText: Colors.white,
       // );
     }
-  }
-
-  Landlords _landlordFromFirebaseUser(User user) {
-    return Landlords(
-      uid: userProfile!.uid,
-      displayName: userProfile!.displayName!,
-      email: userProfile!.email!,
-      phone: phone,
-      userMode: userMode,
-    );
-  }
-
-  Tenants _tenantFromFirebaseUser(User user) {
-    return Tenants(
-      uid: userProfile!.uid,
-      displayName: userProfile!.displayName!,
-      email: userProfile!.email!,
-      phone: phone,
-      userMode: userMode,
-    );
   }
 
   createUserInFirestore(String phone) async {

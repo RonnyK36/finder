@@ -3,6 +3,9 @@ import 'dart:math';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/models/landlords.dart';
+import 'package:finder/models/users.dart';
+import 'package:finder/views/screens/add_apartments.dart';
+import 'package:finder/widgets/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -111,12 +114,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         subtitle: 'Email',
                         iconData: Icons.email,
                       ),
-                      // ProfileCard(
-                      //   title:
-                      //       _authController.userProfile!.phoneNumber.toString(),
-                      //   subtitle: 'Phone',
-                      //   iconData: Icons.phone,
-                      // ),
+                      ProfileCard(
+                        title: _authController.userProfile!.uid,
+                        subtitle: 'UID',
+                        iconData: Icons.perm_identity,
+                      ),
                       // ProfileCard(
                       //   title: _authController.userMode.toString(),
                       //   subtitle: 'Phone',
@@ -124,6 +126,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       // ),
                     ],
                   ),
+            TextButton.icon(
+              onPressed: () => Get.to(() => AddApartment()),
+              icon: Icon(Icons.add),
+              label: Text('Add new'),
+            ),
             SizedBox(height: Config.screenHeight! * 0.006),
             Text('By Nerdy Approach Co', style: kUbuntu15),
           ],

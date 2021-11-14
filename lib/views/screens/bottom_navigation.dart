@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
+import 'package:finder/views/screens/add_apartments.dart';
 import 'package:finder/views/screens/apartments.dart';
 import 'package:finder/views/screens/home_screen.dart';
 import 'package:finder/views/screens/profile_page.dart';
@@ -8,6 +9,7 @@ import 'package:finder/views/screens/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 final tenantsRef = FirebaseFirestore.instance.collection('tenants');
 final landLordsRef = FirebaseFirestore.instance.collection('landlords');
@@ -24,31 +26,38 @@ class _NavigationManagerState extends State<NavigationManager> {
   final screens = [
     Apartments(),
     Search(),
+
     HomeScreen(), // trending page
     ProfilePage(),
   ];
-  // final _auth = Get.find<AuthController>();
+  final _auth = Get.find<AuthController>();
 
   bool isTenant = true;
 
-  // tenantVsLandlord() {
-  //   if () {
-  //     print(_auth.userMode);
-  //     setState(() {
-  //       isTenant = true;
-  //     });
-  //   } else {
-  //     print(_auth.userMode);
-  //     setState(() {
-  //       isTenant = false;
-  //     });
-  //   }
-  // }
+  tenantVsLandlord() {
+    if (_auth.userMode == 'Tenant') {
+      print(_auth.userMode);
+      setState(() {
+        isTenant = true;
+      });
+    } else {
+      print(_auth.userMode);
+      setState(() {
+        isTenant = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     // return buildTenantView();
-    return !isTenant ? Scaffold() : buildTenantView();
+    return isTenant
+        ? buildTenantView()
+        : Scaffold(
+            body: Container(
+              color: Colors.red,
+            ),
+          );
   }
 
   Scaffold buildTenantView() {

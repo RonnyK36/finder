@@ -15,7 +15,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   Future<QuerySnapshot>? landlordResults;
   searchLandlord(query) async {
-    final QuerySnapshot landlords = await landLordsRef
+    QuerySnapshot landlords = await landLordsRef
         .where('userMode', isGreaterThanOrEqualTo: query)
         .get();
     landlords.docs.forEach((DocumentSnapshot element) {
@@ -23,7 +23,7 @@ class _SearchState extends State<Search> {
     });
 
     setState(() {
-      landlordResults = landlords as Future<QuerySnapshot<Object?>>?;
+      // landlordResults = landlords;
     });
   }
 
@@ -66,7 +66,7 @@ class _SearchState extends State<Search> {
             // snapshot.data!.documents.forEach((doc) {});
             print(snapshot.data.toString());
             print(snapshot.data);
-            print('Done executing future builder');
+            print('Done executing future');
 
             return ListView(
               children: landlordResult,

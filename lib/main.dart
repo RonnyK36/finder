@@ -18,9 +18,14 @@ class MyApp extends StatelessWidget {
       initialBinding: ControllerBindings(),
       title: 'Finder',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'NotoSansMono-Regular',
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark().copyWith(
         primaryColor: Color(0xff0d47a1),
+        primaryColorDark: Color(0xff0d47a1),
+        scaffoldBackgroundColor: Color(0xff0d47a1),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Color(0xff6061fa),
+        ),
         accentColor: Color(0xff6061fa),
       ),
       home: Root(),

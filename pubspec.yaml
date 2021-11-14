@@ -1,6 +1,6 @@
 name: finder
 description: A new Flutter project.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
@@ -20,6 +20,8 @@ dependencies:
   flutter_spinkit: ^5.1.0
   flutter_swipable: ^1.2.1
   flutter_swiper: ^1.1.6
+  provider: ^6.0.1
+
   # google_sign_in: ^4.0.1+1
   # geolocator: 5.0.1
   # uuid: ^2.0.0
@@ -30,12 +32,10 @@ dependencies:
   # timeago: 2.0.17
   # cached_network_image:
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-    
 flutter:
   uses-material-design: true
   fonts:
@@ -49,10 +49,10 @@ flutter:
 #   uses-material-design: true
 #   assets:
 #     - assets/images
-    
+
 #   fonts:
 #     - family: NotoSansMono-Regular.ttf
 #       fonts:
 #         - asset: assets\NotoSansMono-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+#       - asset: fonts/Schyler-Italic.ttf
+#         style: italic
