@@ -2,16 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/models/apartments.dart';
 
 abstract class Database {
-  Future<void> createJob(Apartment apartment);
+  Future<void> createApartment(Apartment apartment);
 }
 
 class FirestoreDatabase implements Database {
-  final String uid;
-  FirestoreDatabase({required this.uid});
+  Future<void> createApartment(Apartment apartment) async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<void> createJob(Apartment apartment) async {
-    final path = '/apartments/$uid/apartment_123';
-    final docReference = FirebaseFirestore.instance.doc(path);
-    await docReference.set(apartment.toMap());
+    await _firestore
+        .collection('aparments')
+        .doc(apartment.name)
+        .set(apartment.toMap());
+
+    print('Trying');
   }
 }

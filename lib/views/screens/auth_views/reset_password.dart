@@ -27,13 +27,14 @@ class _ResetPasswordState extends State<ResetPassword> {
                       onPressed: () => Get.back(), icon: Icon(Icons.close)),
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TitleSection(title: 'Password recovery'),
-                  ],
-                ),
-                Column(
-                  children: [
+                    Text(
+                      'Recover your password.',
+                      style: kUbuntu15.copyWith(
+                        fontSize: 25,
+                        color: kPrimaryColor,
+                      ),
+                    ),
                     Card(
                       elevation: 3,
                       shadowColor: kAccentColor,

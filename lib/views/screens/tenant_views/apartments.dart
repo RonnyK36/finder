@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/data/apartments.dart';
 import 'package:finder/views/screens/tenant_views/details_screen.dart';
@@ -17,6 +18,27 @@ class Apartments extends StatefulWidget {
 class _ApartmentsState extends State<Apartments> {
   @override
   Widget build(BuildContext context) {
+    // return buildLocalApartmnents();
+    return Container(
+      child: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('apartments')
+            .doc()
+            .snapshots(),
+        builder: (context, snapshot) {
+          final apartment = snapshot.data;
+          print('Print this: $apartment');
+          return ListView.builder(itemBuilder: (context, index) {
+            return Container(
+              child: Text(''),
+            );
+          });
+        },
+      ),
+    );
+  }
+
+  Scaffold buildLocalApartmnents() {
     return Scaffold(
       body: Center(
         child: Column(

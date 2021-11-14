@@ -1,9 +1,9 @@
+import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/models/apartments.dart';
 import 'package:finder/services/database.dart';
 import 'package:finder/widgets/components/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 class AddApartment extends StatefulWidget {
   const AddApartment({Key? key}) : super(key: key);
@@ -13,17 +13,20 @@ class AddApartment extends StatefulWidget {
 }
 
 class _AddApartmentState extends State<AddApartment> {
+  final _authController = Get.find<AuthController>();
+
+  FirestoreDatabase database = FirestoreDatabase();
+
   Future<void> _createApartment(context) async {
-    // final database = Provider.of<Database>(context);
-    final database = Get.find<Database>();
-    await database.createJob(
+    await database.createApartment(
       Apartment(
-          apartmentId: 'apart_1',
+          apartmentId: _authController.userProfile!.uid,
           name: 'Haven House',
           description: 'Spacious rooms',
           location: 'Munene',
           price: '6500'),
     );
+    print('Trying');
   }
 
   @override

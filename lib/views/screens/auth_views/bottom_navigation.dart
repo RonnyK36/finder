@@ -7,10 +7,8 @@ import 'package:finder/views/screens/tenant_views/home_screen.dart';
 import 'package:finder/views/screens/landlord_views/notifications.dart';
 import 'package:finder/views/screens/shared_view/profile_page.dart';
 import 'package:finder/views/screens/tenant_views/search.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 final tenantsRef = FirebaseFirestore.instance.collection('tenants');
 final landLordsRef = FirebaseFirestore.instance.collection('landlords');
@@ -37,34 +35,34 @@ class _NavigationManagerState extends State<NavigationManager> {
     ProfilePage(),
   ];
 
-  final _auth = Get.find<AuthController>();
+  // final _auth = Get.find<AuthController>();
 
-  bool isTenant = true;
+  // bool isTenant = true;
 
-  tenantVsLandlord() {
-    if (_auth.userMode == 'Tenant') {
-      print(_auth.userMode);
-      setState(() {
-        isTenant = true;
-      });
-    } else {
-      print(_auth.userMode);
-      setState(() {
-        isTenant = false;
-      });
-    }
-  }
+  // tenantVsLandlord() {
+  //   if (_auth.userMode == 'Tenant') {
+  //     print(_auth.userMode);
+  //     setState(() {
+  //       isTenant = true;
+  //     });
+  //   } else {
+  //     print(_auth.userMode);
+  //     setState(() {
+  //       isTenant = false;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // return isTenant ? buildTenantView() : buildLandlordview();
     return Scaffold(
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            child: _.userMode == 'Tenant'
-                ? buildTenantView()
-                : buildLandlordview(),
+            // child: buildTenantView(),
+            child: _.userMode == 'Landlord'
+                ? buildLandlordview()
+                : buildTenantView(),
           );
         },
       ),
@@ -76,8 +74,8 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: landlordScreens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
+        // selectedItemColor: Colors.white,
+        unselectedItemColor: kAccentColor,
         showUnselectedLabels: true,
         unselectedFontSize: 9,
         unselectedLabelStyle: kUbuntu15.copyWith(fontSize: 13),
@@ -89,12 +87,12 @@ class _NavigationManagerState extends State<NavigationManager> {
         },
         items: [
           BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
+            // backgroundColor: Colors.red,
             icon: Icon(Icons.add),
             label: 'Add new',
           ),
           BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
+            // backgroundColor: kAccentColor,
             icon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
