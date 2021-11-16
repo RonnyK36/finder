@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/landlord_views/add_apartments.dart';
+import 'package:finder/views/screens/landlord_views/manage_apartments.dart';
 import 'package:finder/views/screens/landlord_views/notifications.dart';
 import 'package:finder/views/screens/shared_view/profile_page.dart';
 import 'package:finder/views/screens/tenant_views/apartments.dart';
@@ -31,6 +32,7 @@ class _NavigationManagerState extends State<NavigationManager> {
 
   final landlordScreens = [
     AddApartment(),
+    ManageApartments(),
     Notifications(),
     ProfilePage(),
   ];
@@ -60,6 +62,7 @@ class _NavigationManagerState extends State<NavigationManager> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
+        selectedItemColor: Colors.green,
         unselectedItemColor: kAccentColor,
         showUnselectedLabels: true,
         unselectedFontSize: 9,
@@ -77,12 +80,17 @@ class _NavigationManagerState extends State<NavigationManager> {
             label: 'Add new',
           ),
           BottomNavigationBarItem(
+            // backgroundColor: Colors.red,
+            icon: Icon(Icons.manage_accounts),
+            label: 'Manage',
+          ),
+          BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
           BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
+            // backgroundColor: kAccentColor,
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
