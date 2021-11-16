@@ -1,4 +1,3 @@
-import 'package:finder/config/configurations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,28 +36,28 @@ class UploadTextFormField extends StatelessWidget {
         labelText: labelText,
         alignLabelWithHint: true,
         labelStyle: TextStyle(fontSize: 20),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-            color: kAccentColor,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: kPrimaryColor),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: kErrorColor),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-            color: kAccentColor,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
+        // focusedBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(
+        //     width: 2,
+        //     color: kAccentColor,
+        //   ),
+        //   borderRadius: BorderRadius.circular(16),
+        // ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(color: kPrimaryColor),
+        //   borderRadius: BorderRadius.circular(16),
+        // ),
+        // errorBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(color: kErrorColor),
+        //   borderRadius: BorderRadius.circular(16),
+        // ),
+        // focusedErrorBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(
+        //     width: 2,
+        //     color: kAccentColor,
+        //   ),
+        //   borderRadius: BorderRadius.circular(16),
+        // ),
       ),
     );
   }

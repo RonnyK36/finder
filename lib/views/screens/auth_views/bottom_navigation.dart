@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/landlord_views/add_apartments.dart';
-import 'package:finder/views/screens/tenant_views/apartments.dart';
-import 'package:finder/views/screens/tenant_views/home_screen.dart';
 import 'package:finder/views/screens/landlord_views/notifications.dart';
 import 'package:finder/views/screens/shared_view/profile_page.dart';
+import 'package:finder/views/screens/tenant_views/apartments.dart';
+import 'package:finder/views/screens/tenant_views/home_screen.dart';
 import 'package:finder/views/screens/tenant_views/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,24 +34,7 @@ class _NavigationManagerState extends State<NavigationManager> {
     Notifications(),
     ProfilePage(),
   ];
-
-  // final _auth = Get.find<AuthController>();
-
-  // bool isTenant = true;
-
-  // tenantVsLandlord() {
-  //   if (_auth.userMode == 'Tenant') {
-  //     print(_auth.userMode);
-  //     setState(() {
-  //       isTenant = true;
-  //     });
-  //   } else {
-  //     print(_auth.userMode);
-  //     setState(() {
-  //       isTenant = false;
-  //     });
-  //   }
-  // }
+  final _authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,22 +42,24 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            // child: buildTenantView(),
-            child: _.userMode == 'Landlord'
-                ? buildLandlordview()
-                : buildTenantView(),
+            child: buildLandlordView(),
+            // child: _.userMode == 'Landlord'
+            //     ? buildLandlordView()
+            //     : buildTenantView(),
           );
         },
       ),
     );
   }
 
-  Scaffold buildLandlordview() {
+  Scaffold buildLandlordView() {
     return Scaffold(
-      body: landlordScreens[currentIndex],
+      body: IndexedStack(
+        index: currentIndex,
+        children: [...landlordScreens],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
-        // selectedItemColor: Colors.white,
         unselectedItemColor: kAccentColor,
         showUnselectedLabels: true,
         unselectedFontSize: 9,
@@ -108,7 +93,10 @@ class _NavigationManagerState extends State<NavigationManager> {
 
   Scaffold buildTenantView() {
     return Scaffold(
-      body: tenantScreens[currentIndex],
+      body: IndexedStack(
+        index: currentIndex,
+        children: [...tenantScreens],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
         selectedItemColor: Colors.white,
