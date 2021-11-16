@@ -126,11 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       // ),
                     ],
                   ),
-            TextButton.icon(
-              onPressed: () => Get.to(() => AddApartment()),
-              icon: Icon(Icons.add),
-              label: Text('Add new'),
-            ),
+
             SizedBox(height: Config.screenHeight! * 0.006),
             Text('By Nerdy Approach Co', style: kUbuntu15),
           ],

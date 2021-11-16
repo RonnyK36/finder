@@ -30,6 +30,7 @@ class AuthController extends GetxController {
   void onInit() {
     getTenants();
     displayName = userProfile != null ? userProfile!.displayName! : '';
+
     super.onInit();
   }
 

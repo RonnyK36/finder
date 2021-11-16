@@ -4,12 +4,14 @@ class Apartment {
   final String description;
   final String location;
   final String price;
+  final String deposit;
   Apartment({
     required this.apartmentId,
     required this.name,
     required this.description,
     required this.location,
     required this.price,
+    required this.deposit,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class Apartment {
       'description': description,
       'location': location,
       'price': price,
+      'deposit': deposit,
     };
   }
 }

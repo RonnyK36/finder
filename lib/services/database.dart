@@ -10,7 +10,7 @@ class FirestoreDatabase implements Database {
     FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
     await _firestore
-        .collection('aparments')
+        .collection('apartments')
         .doc(apartment.name)
         .set(apartment.toMap());
 

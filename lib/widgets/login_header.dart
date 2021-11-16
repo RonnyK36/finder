@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TitleSection extends StatelessWidget {
   const TitleSection({
-    @required this.title,
+    required this.title,
   });
   final String? title;
 
