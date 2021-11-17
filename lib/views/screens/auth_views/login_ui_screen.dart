@@ -17,14 +17,14 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           // height: Config.screenHeight! * 0.95,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Header of page
               TitleSection(
                 title: 'finder',
               ),
 
-              SizedBox(height: Config.screenHeight! * 0.08),
+              // SizedBox(height: Config.screenHeight! * 0.08),
               SignInForm(),
             ],
           ),

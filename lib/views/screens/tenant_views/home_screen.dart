@@ -89,6 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
 
           SizedBox(height: 10),
+          Image.network(
+              'https://avatars.githubusercontent.com/u/77696744?s=96&v=4'),
         ],
       ),
     );

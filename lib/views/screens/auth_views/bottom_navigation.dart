@@ -44,7 +44,7 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            child: buildLandlordView(),
+            child: buildTenantView(),
             // child: _.userMode == 'Landlord'
             //     ? buildLandlordView()
             //     : buildTenantView(),
@@ -107,8 +107,8 @@ class _NavigationManagerState extends State<NavigationManager> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 24,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: kAccentColor,
         showUnselectedLabels: true,
         unselectedFontSize: 10,
         unselectedLabelStyle: kUbuntu15.copyWith(fontSize: 12),
@@ -120,22 +120,22 @@ class _NavigationManagerState extends State<NavigationManager> {
         },
         items: [
           BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
+            // backgroundColor: kAccentColor,
             icon: Icon(Icons.home),
             label: 'Appartments',
           ),
           BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
+            // backgroundColor: kAccentColor,
             icon: Icon(Icons.search),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
+            // backgroundColor: kAccentColor,
             icon: Icon(Icons.whatshot),
             label: 'Trending',
           ),
           BottomNavigationBarItem(
-            backgroundColor: kAccentColor,
+            // backgroundColor: kAccentColor,
             icon: Icon(Icons.person),
             label: 'Profile',
           ),

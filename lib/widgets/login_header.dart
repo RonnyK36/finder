@@ -12,7 +12,7 @@ class TitleSection extends StatelessWidget {
   Widget build(BuildContext context) {
     Config().init(context);
     return Container(
-      height: Config.screenHeight! * 0.1,
+      height: Config.screenHeight! * 0.2,
       child: Align(
         alignment: Alignment.bottomLeft,
         child: Column(
@@ -21,28 +21,61 @@ class TitleSection extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(5.0),
-              child: Row(
-                children: [
-                  Text(
-                    'Welcome to ',
-                    style: GoogleFonts.ubuntu(
-                      textStyle: TextStyle(
-                        fontSize: Config.screenWidth! * 0.1,
+              child: Align(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title!,
+                      style: GoogleFonts.ubuntu(
+                        textStyle: TextStyle(
+                          fontSize: Config.screenWidth! * 0.1,
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    title!,
-                    style: GoogleFonts.ubuntu(
-                      textStyle: TextStyle(
+                    Text(
+                      '.',
+                      style: GoogleFonts.ubuntu(
+                        textStyle: TextStyle(
                           fontSize: Config.screenWidth! * 0.1,
-                          color: kPrimaryColor),
+                          color: kAccentColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(height: Config.screenHeight! * 0.009),
+            Row(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Config.screenWidth! * 0.03),
+                    child: Text(
+                      'Do you have an account? ',
+                      style: kUbuntu15.copyWith(
+                        fontSize: 20,
+                        color: kPrimaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+                Text(
+                  'Login',
+                  style: kUbuntu15.copyWith(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -19,10 +19,12 @@ class Apartments extends StatefulWidget {
 class _ApartmentsState extends State<Apartments> {
   CollectionReference apartmentsRef =
       FirebaseFirestore.instance.collection('apartments');
+
   @override
   Widget build(BuildContext context) {
     // return buildLocalApartmnents();
     return Container(
+      color: kAccentColor,
       child: StreamBuilder(
         stream: apartmentsRef.snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -35,27 +37,29 @@ class _ApartmentsState extends State<Apartments> {
           }
           return ListView(
             children: snapshot.data!.docs.map((document) {
+              final url = document['url'];
               return Center(
-                child: Container(
-                  width: double.infinity,
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            // color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+                child: Card(
+                  color: Colors.black,
+                  child: Container(
+                    // width: double.infinity,
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              // color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
 
-                            color: kAccentColor,
-                            borderRadius: BorderRadius.circular(15)),
-                        // width: 300,
-                        width: Config.screenWidth! * 0.95,
-                        height: Config.screenHeight! * 0.86,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 15),
-                              child: Row(
+                              // color: kAccentColor,
+                              borderRadius: BorderRadius.circular(15)),
+                          // width: 300,
+                          // width: Config.screenWidth! * 0.95,
+                          // height: Config.screenHeight! * 0.86,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
                                 children: [
                                   SizedBox(
                                     width: Config.screenWidth! * 0.05,
@@ -64,49 +68,74 @@ class _ApartmentsState extends State<Apartments> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        '${document["name"]}',
-                                        style: kUbuntu15.copyWith(
-                                            fontSize: 30, color: Colors.white),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.location_city,
+                                                color: Colors.grey,
+                                              ),
+                                              Text(
+                                                '${document["name"]}',
+                                                style: kUbuntu15.copyWith(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kAccentColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.add_location,
+                                                color: Colors.red,
+                                              ),
+                                              Text(
+                                                '${document["location"]}',
+                                                style: kUbuntu15.copyWith(
+                                                    fontSize: 15,
+                                                    color: Colors.grey),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
-                            ),
-                            Center(
-                              child: Container(
-                                height: Config.screenHeight! * 0.25,
-                                // child: Image.asset(image),
-                              ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 15),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Description: \n',
-                                        style: kUbuntu15.copyWith(
-                                            fontSize: 20, color: Colors.white),
-                                      ),
-                                      Text(
-                                        '${document["description"]}',
-                                        style: kUbuntu15.copyWith(
-                                            fontSize: 15, color: Colors.white),
-                                      ),
-                                    ],
+                              Image.network(url),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 15),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Description: \n',
+                                          style: kUbuntu15.copyWith(
+                                            fontSize: 20,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${document["description"]}',
+                                          style: kUbuntu15.copyWith(
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: Card(
+                                  Card(
                                     elevation: 0,
                                     child: Container(
                                       width: double.infinity,
@@ -155,7 +184,7 @@ class _ApartmentsState extends State<Apartments> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'Price: ',
+                                                  'Deposit: ',
                                                   style: kUbuntu15,
                                                 ),
                                                 Text(
@@ -171,67 +200,68 @@ class _ApartmentsState extends State<Apartments> {
                                       ),
                                     ),
                                   ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    ElevatedButton.icon(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                        // color: color == Colors.red ? Colors.white : Colors.red,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ElevatedButton.icon(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                          // color: color == Colors.red ? Colors.white : Colors.red,
+                                        ),
+                                        label: Text('Remove'),
                                       ),
-                                      label: Text('Remove'),
-                                    ),
-                                    ElevatedButton.icon(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.phone,
-                                        color: Colors.white,
-                                        // color: color == Colors.red ? Colors.white : Colors.red,
+                                      ElevatedButton.icon(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.phone,
+                                          color: Colors.white,
+                                          // color: color == Colors.red ? Colors.white : Colors.red,
+                                        ),
+                                        label: Text('Call landlord'),
                                       ),
-                                      label: Text('Call landlord'),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Colors.primaries[
-                                    Random().nextInt(Colors.primaries.length)],
-                              ),
-                              SizedBox(height: 10),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.favorite,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.share,
-                                  color: Colors.white,
-                                ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    ],
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
+                            height: Config.screenHeight! * 0.35,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: Colors.primaries[Random()
+                                      .nextInt(Colors.primaries.length)],
+                                ),
+                                SizedBox(height: 10),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.favorite,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.share,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
