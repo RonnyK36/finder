@@ -38,7 +38,7 @@ class _DetailsPageState extends State<DetailsPage> {
               Container(
                 height: Config.screenHeight! * 0.5,
                 width: double.infinity,
-                child: Image.asset(
+                child: Image.network(
                   widget.image,
                   fit: BoxFit.contain,
                 ),
@@ -84,6 +84,7 @@ class _DetailsPageState extends State<DetailsPage> {
               Card(
                 color: kAccentColor,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
                       onPressed: () {},

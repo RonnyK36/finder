@@ -19,7 +19,7 @@ class Apartments extends StatefulWidget {
 class _ApartmentsState extends State<Apartments> {
   CollectionReference apartmentsRef =
       FirebaseFirestore.instance.collection('apartments');
-
+//  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     // return buildLocalApartmnents();
@@ -35,246 +35,281 @@ class _ApartmentsState extends State<Apartments> {
               ),
             );
           }
-          return ListView(
-            children: snapshot.data!.docs.map((document) {
-              final url = document['url'];
-              return Center(
-                child: Card(
-                  color: Colors.black,
-                  child: Container(
-                    // width: double.infinity,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                    child: Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              // color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Available now'),
+            ),
+            body: ListView(
+              children: snapshot.data!.docs.map((document) {
+                final url = document['url'];
 
-                              // color: kAccentColor,
-                              borderRadius: BorderRadius.circular(15)),
-                          // width: 300,
-                          // width: Config.screenWidth! * 0.95,
-                          // height: Config.screenHeight! * 0.86,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: Config.screenWidth! * 0.05,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.location_city,
-                                                color: Colors.grey,
-                                              ),
-                                              Text(
-                                                '${document["name"]}',
-                                                style: kUbuntu15.copyWith(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: kAccentColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.add_location,
-                                                color: Colors.red,
-                                              ),
-                                              Text(
-                                                '${document["location"]}',
-                                                style: kUbuntu15.copyWith(
-                                                    fontSize: 15,
-                                                    color: Colors.grey),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Image.network(url),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 15),
-                                    child: Column(
+                return Center(
+                  child: Card(
+                    color: Colors.black,
+                    child: Container(
+                      // width: double.infinity,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                // color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+
+                                // color: kAccentColor,
+                                borderRadius: BorderRadius.circular(15)),
+                            // width: 300,
+                            // width: Config.screenWidth! * 0.95,
+                            // height: Config.screenHeight! * 0.86,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: Config.screenWidth! * 0.05,
+                                    ),
+                                    Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          'Description: \n',
-                                          style: kUbuntu15.copyWith(
-                                            fontSize: 20,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                        Text(
-                                          '${document["description"]}',
-                                          style: kUbuntu15.copyWith(
-                                            fontSize: 15,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Card(
-                                    elevation: 0,
-                                    child: Container(
-                                      width: double.infinity,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20, vertical: 5),
-                                        child: Column(
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
                                               children: [
+                                                Icon(
+                                                  Icons.location_city,
+                                                  color: Colors.grey,
+                                                ),
                                                 Text(
-                                                  'Location: ',
-                                                  style: kUbuntu15,
+                                                  '${document["name"]}',
+                                                  style: kUbuntu15.copyWith(
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kAccentColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.add_location,
+                                                  color: Colors.red,
                                                 ),
                                                 Text(
                                                   '${document["location"]}',
                                                   style: kUbuntu15.copyWith(
-                                                      fontSize: 20,
-                                                      color: kAccentColor),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  'Price: ',
-                                                  style: kUbuntu15,
-                                                ),
-                                                Text(
-                                                  'KES ${document["price"]}',
-                                                  style: kUbuntu15.copyWith(
-                                                      fontSize: 20,
-                                                      color: kAccentColor),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  'Deposit: ',
-                                                  style: kUbuntu15,
-                                                ),
-                                                Text(
-                                                  'KES ${document["deposit"]}',
-                                                  style: kUbuntu15.copyWith(
-                                                      fontSize: 20,
-                                                      color: kAccentColor),
+                                                      fontSize: 15,
+                                                      color: Colors.grey),
                                                 ),
                                               ],
                                             ),
                                           ],
                                         ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(
+                                      () => DetailsPage(
+                                        title: "${document['name']}",
+                                        image: url,
+                                        price: "${document['price']}",
+                                        location: "${document['location']}",
+                                        description:
+                                            "${document['description']}",
+                                      ),
+                                    );
+                                  },
+                                  child: Center(
+                                      child: Image.network(
+                                    url,
+                                    fit: BoxFit.contain,
+                                  )),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 15),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Description: \n',
+                                            style: kUbuntu15.copyWith(
+                                              fontSize: 20,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${document["description"]}',
+                                            style: kUbuntu15.copyWith(
+                                              fontSize: 15,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ElevatedButton.icon(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                          // color: color == Colors.red ? Colors.white : Colors.red,
+                                    Card(
+                                      elevation: 0,
+                                      child: Container(
+                                        width: double.infinity,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 5),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'Location: ',
+                                                    style: kUbuntu15,
+                                                  ),
+                                                  Text(
+                                                    '${document["location"]}',
+                                                    style: kUbuntu15.copyWith(
+                                                        fontSize: 20,
+                                                        color: kAccentColor),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'Price: ',
+                                                    style: kUbuntu15,
+                                                  ),
+                                                  Text(
+                                                    'KES ${document["price"]}',
+                                                    style: kUbuntu15.copyWith(
+                                                        fontSize: 20,
+                                                        color: kAccentColor),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'Deposit: ',
+                                                    style: kUbuntu15,
+                                                  ),
+                                                  Text(
+                                                    'KES ${document["deposit"]}',
+                                                    style: kUbuntu15.copyWith(
+                                                        fontSize: 20,
+                                                        color: kAccentColor),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        label: Text('Remove'),
                                       ),
-                                      ElevatedButton.icon(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.phone,
-                                          color: Colors.white,
-                                          // color: color == Colors.red ? Colors.white : Colors.red,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        ElevatedButton.icon(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.phone,
+                                            color: Colors.white,
+                                            // color: color == Colors.red ? Colors.white : Colors.red,
+                                          ),
+                                          label: Text('Call landlord'),
                                         ),
-                                        label: Text('Call landlord'),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Container(
-                            height: Config.screenHeight! * 0.35,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.primaries[Random()
-                                      .nextInt(Colors.primaries.length)],
-                                ),
-                                SizedBox(height: 10),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.favorite,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.share,
-                                    color: Colors.white,
-                                  ),
+                                        ElevatedButton.icon(
+                                          onPressed: () {
+                                            Get.to(
+                                              () => DetailsPage(
+                                                title: "${document['name']}",
+                                                image: url,
+                                                price: "${document['price']}",
+                                                location:
+                                                    "${document['location']}",
+                                                description:
+                                                    "${document['description']}",
+                                              ),
+                                            );
+                                          },
+                                          icon: Icon(
+                                            Icons.more,
+                                            // color: color == Colors.red ? Colors.white : Colors.red,
+                                          ),
+                                          label: Text('View Details'),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                              height: Config.screenHeight! * 0.35,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: Colors.primaries[Random()
+                                        .nextInt(Colors.primaries.length)],
+                                  ),
+                                  SizedBox(height: 10),
+                                  IconButton(
+                                    onPressed: () {
+                                      // setState(() {
+                                      //   isFavorite = !isFavorite;
+                                      // });
+                                    },
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                      // color: isFavorite
+                                      //     ? Colors.red
+                                      //     : Colors.white,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.share,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            }).toList(),
+                );
+              }).toList(),
+            ),
           );
-
-          // final apartment = snapshot.data;
-          // print('Print this: $apartment');
-          // return ListView.builder(itemBuilder: (context, index) {
-          //   return Container(
-          //     child: Text(''),
-          //   );
-          // });
         },
       ),
     );
