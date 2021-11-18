@@ -44,7 +44,7 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            child: buildTenantView(),
+            child: buildLandlordView(),
             // child: _.userMode == 'Landlord'
             //     ? buildLandlordView()
             //     : buildTenantView(),

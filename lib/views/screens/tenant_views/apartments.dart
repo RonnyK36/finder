@@ -128,10 +128,11 @@ class _ApartmentsState extends State<Apartments> {
                                     );
                                   },
                                   child: Center(
-                                      child: Image.network(
-                                    url,
-                                    fit: BoxFit.contain,
-                                  )),
+                                    child: Image.network(
+                                      url,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/models/apartments.dart';
@@ -5,7 +7,9 @@ import 'package:finder/services/database.dart';
 import 'package:finder/widgets/components/reusable_button.dart';
 import 'package:finder/widgets/components/upload_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddApartment extends StatefulWidget {
   const AddApartment({Key? key}) : super(key: key);
@@ -68,6 +72,23 @@ class _AddApartmentState extends State<AddApartment> {
   }
 
   bool isUploadComplete = false;
+  File? image;
+
+  final picker = ImagePicker();
+  Future chooseImage(ImageSource source) async {
+    try {
+      final pickedImage = await picker.pickImage(source: source);
+      if (pickedImage == null) {
+        return null;
+      }
+      final tempImage = File(pickedImage.path);
+      setState(() {
+        this.image = tempImage;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,31 +122,76 @@ class _AddApartmentState extends State<AddApartment> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          height: Config.screenHeight! * 0.3,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Add images of the apartment',
-                                  style: kUbuntu15.copyWith(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                        image != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.file(
+                                  image!,
+                                  height: Config.screenHeight! * 0.3,
+                                  width: Config.screenWidth! * 0.8,
+                                ),
+                              )
+                            : Container(
+                                height: Config.screenHeight! * 0.3,
+                                // color: kAccentColor,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      // Text(
+                                      //   'Add images of the apartment',
+                                      //   style: kUbuntu15.copyWith(
+                                      //     fontSize: 18,
+                                      //     // fontWeight: FontWeight.bold,
+                                      //   ),
+                                      // ),
+                                      Icon(
+                                        Icons.image,
+                                        color: kAccentColor,
+                                        size: 80,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextButton.icon(
+                                            onPressed: () =>
+                                                chooseImage(ImageSource.camera),
+                                            icon: Icon(
+                                              Icons.add_a_photo,
+                                              color: kAccentColor,
+                                            ),
+                                            label: Text(
+                                              'Take pictures',
+                                              style: kUbuntu15.copyWith(
+                                                color: kAccentColor,
+                                              ),
+                                            ),
+                                          ),
+                                          TextButton.icon(
+                                            onPressed: () => chooseImage(
+                                                ImageSource.gallery),
+                                            icon: Icon(
+                                              Icons.photo,
+                                              color: kAccentColor,
+                                            ),
+                                            label: Text(
+                                              'Choose from gallery',
+                                              style: kUbuntu15.copyWith(
+                                                color: kAccentColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.image_search,
-                                    size: 80,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                              ),
                         UploadTextFormField(
                           controller: nameController,
                           prefixText: 'Name:  ',
