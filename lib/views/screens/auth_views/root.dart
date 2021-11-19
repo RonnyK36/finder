@@ -1,7 +1,8 @@
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
-import 'package:finder/views/screens/bottom_navigation.dart';
-import 'package:finder/views/screens/login_ui_screen.dart';
+import 'package:finder/views/screens/auth_views/bottom_navigation.dart';
+import 'package:finder/views/screens/tenant_views/landlord_screen.dart';
+import 'package:finder/views/screens/auth_views/login_ui_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

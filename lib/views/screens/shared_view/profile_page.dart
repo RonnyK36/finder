@@ -2,6 +2,10 @@ import 'dart:math';
 
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
+import 'package:finder/models/landlords.dart';
+import 'package:finder/models/users.dart';
+import 'package:finder/views/screens/landlord_views/add_apartments.dart';
+import 'package:finder/widgets/components/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,17 +26,17 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         actions: [
-          TextButton(
-            onPressed: () {
-              setState(() {
-                showInfo = !showInfo;
-              });
-            },
-            child: Text(
-              showInfo ? 'Show info' : 'Hide info',
-              style: kUbuntu15.copyWith(color: kAccentColor),
-            ),
-          ),
+          // TextButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       showInfo = !showInfo;
+          //     });
+          //   },
+          //   child: Text(
+          //     showInfo ? 'Show info' : 'Hide info',
+          //     style: kUbuntu15.copyWith(color: kAccentColor),
+          //   ),
+          // ),
           TextButton.icon(
             onPressed: () => _authController.signOut(),
             icon: Icon(Icons.logout, color: Colors.red),
@@ -75,6 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(width: Config.screenWidth! * 0.05),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             _authController.userProfile!.displayName.toString(),
@@ -92,36 +97,31 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            showInfo
-                ? Container()
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ProfileCard(
-                        title:
-                            _authController.userProfile!.displayName.toString(),
-                        subtitle: 'Username',
-                        iconData: Icons.person,
-                      ),
-                      ProfileCard(
-                        title: _authController.userProfile!.email.toString(),
-                        subtitle: 'Email',
-                        iconData: Icons.email,
-                      ),
-                      // ProfileCard(
-                      //   title:
-                      //       _authController.userProfile!.phoneNumber.toString(),
-                      //   subtitle: 'Phone',
-                      //   iconData: Icons.phone,
-                      // ),
-                      // ProfileCard(
-                      //   title: _authController.userMode.toString(),
-                      //   subtitle: 'Phone',
-                      //   iconData: Icons.mode,
-                      // ),
-                    ],
-                  ),
+            // showInfo
+            //     ? Container()
+            //     : Column(
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           ProfileCard(
+            //             title:
+            //                 _authController.userProfile!.displayName.toString(),
+            //             subtitle: "Username",
+            //             iconData: Icons.person,
+            //           ),
+            //           ProfileCard(
+            //             title: _authController.userProfile!.email.toString(),
+            //             subtitle: 'Email',
+            //             iconData: Icons.email,
+            //           ),
+            //           ProfileCard(
+            //             title: _authController.userProfile!.uid,
+            //             subtitle: 'UID',
+            //             iconData: Icons.perm_identity,
+            //           ),
+            //         ],
+            //       ),
+
             SizedBox(height: Config.screenHeight! * 0.006),
             Text('By Nerdy Approach Co', style: kUbuntu15),
           ],
@@ -152,7 +152,7 @@ class ProfileCard extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: kUbuntu15.copyWith(fontSize: 25, color: kPrimaryColor),
+          style: kUbuntu15.copyWith(fontSize: 20, color: kPrimaryColor),
         ),
         selectedTileColor: Colors.amber,
         subtitle: Text(

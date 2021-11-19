@@ -1,6 +1,6 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/rounded_text_form_field.dart';
-import 'package:finder/widgets/sign_in_buttons.dart';
+import 'package:finder/widgets/components/rounded_text_form_field.dart';
+import 'package:finder/widgets/components/sign_in_buttons.dart';
 import 'package:flutter/material.dart';
 
 class SignInForm extends StatefulWidget {
@@ -23,19 +23,8 @@ class _SignInFormState extends State<SignInForm> {
       child: Container(
         height: Config.screenHeight! * 0.52,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: Config.screenWidth! * 0.03),
-                child: Text(
-                  'Log in if you have an account',
-                  style: kUbuntu15.copyWith(fontSize: 20, color: kAccentColor),
-                ),
-              ),
-            ),
             SizedBox(height: Config.screenHeight! * 0.006),
             Form(
               key: _formKey,

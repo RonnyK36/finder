@@ -1,6 +1,6 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/views/screens/root.dart';
-import 'package:finder/widgets/reusable_button.dart';
+import 'package:finder/views/screens/auth_views/root.dart';
+import 'package:finder/widgets/components/reusable_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

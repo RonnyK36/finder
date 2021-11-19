@@ -9,7 +9,10 @@ const kErrorColor = Color(0xfffe5350);
 const kAccentColor = Color(0xff6061fa);
 
 var kUbuntu15 = GoogleFonts.ubuntu(
-  textStyle: TextStyle(fontSize: 15),
+  textStyle: TextStyle(
+    fontSize: 15,
+    letterSpacing: 1.3,
+  ),
 );
 
 class Config {

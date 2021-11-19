@@ -1,5 +1,5 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/sign_in_form.dart';
+import 'package:finder/widgets/forms/sign_in_form.dart';
 import 'package:finder/widgets/login_header.dart';
 import 'package:flutter/material.dart';
 
@@ -15,16 +15,16 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: Config.screenHeight! * 0.95,
+          // height: Config.screenHeight! * 0.95,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Header of page
               TitleSection(
-                title: 'Hello comrade,',
+                title: 'finder',
               ),
 
-              // SizedBox(height: Config.screenHeight! * 0.02),
+              // SizedBox(height: Config.screenHeight! * 0.08),
               SignInForm(),
             ],
           ),

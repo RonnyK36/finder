@@ -1,6 +1,6 @@
 import 'package:finder/config/configurations.dart';
-import 'package:finder/widgets/rounded_text_form_field.dart';
-import 'package:finder/widgets/sign_up_buttons.dart';
+import 'package:finder/widgets/components/rounded_text_form_field.dart';
+import 'package:finder/widgets/forms/sign_up_buttons.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -162,20 +162,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         labelText: "Username",
                         keyboardType: TextInputType.name,
                       ),
-                      // RoundedTextFormField(
-                      //   controller: _phoneController,
-                      //   isObscure: false,
-                      //   icon: Icons.phone,
-                      //   validator: (val) {
-                      //     if (val.toString().length != 10) {
-                      //       return 'Invalid phone number';
-                      //     } else {
-                      //       return null;
-                      //     }
-                      //   },
-                      //   labelText: "Phone",
-                      //   keyboardType: TextInputType.number,
-                      // ),
                       RoundedTextFormField(
                         controller: _emailController,
                         isObscure: false,
