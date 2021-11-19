@@ -67,7 +67,11 @@ class _AddApartmentState extends State<AddApartment> {
                 },
                 icon: Icon(Icons.close)),
             Spacer(),
-            Center(child: Text('Upload was successful')),
+            Center(
+                child: Text(
+              'Upload was successful',
+              style: kUbuntu15.copyWith(fontSize: 25),
+            )),
             Spacer(),
           ],
         ),
@@ -160,10 +164,48 @@ class _AddApartmentState extends State<AddApartment> {
                         image != null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
-                                child: Image.file(
-                                  image!,
-                                  height: Config.screenHeight! * 0.3,
-                                  width: Config.screenWidth! * 0.8,
+                                child: Column(
+                                  children: [
+                                    Image.file(
+                                      image!,
+                                      height: Config.screenHeight! * 0.3,
+                                      width: Config.screenWidth! * 0.8,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        TextButton.icon(
+                                          onPressed: () =>
+                                              chooseImage(ImageSource.camera),
+                                          icon: Icon(
+                                            Icons.add_a_photo,
+                                            color: kAccentColor,
+                                          ),
+                                          label: Text(
+                                            'Take pictures',
+                                            style: kUbuntu15.copyWith(
+                                              color: kAccentColor,
+                                            ),
+                                          ),
+                                        ),
+                                        TextButton.icon(
+                                          onPressed: () =>
+                                              chooseImage(ImageSource.gallery),
+                                          icon: Icon(
+                                            Icons.photo,
+                                            color: kAccentColor,
+                                          ),
+                                          label: Text(
+                                            'Choose from gallery',
+                                            style: kUbuntu15.copyWith(
+                                              color: kAccentColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               )
                             : Container(

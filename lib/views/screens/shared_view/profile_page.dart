@@ -26,17 +26,17 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         actions: [
-          TextButton(
-            onPressed: () {
-              setState(() {
-                showInfo = !showInfo;
-              });
-            },
-            child: Text(
-              showInfo ? 'Show info' : 'Hide info',
-              style: kUbuntu15.copyWith(color: kAccentColor),
-            ),
-          ),
+          // TextButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       showInfo = !showInfo;
+          //     });
+          //   },
+          //   child: Text(
+          //     showInfo ? 'Show info' : 'Hide info',
+          //     style: kUbuntu15.copyWith(color: kAccentColor),
+          //   ),
+          // ),
           TextButton.icon(
             onPressed: () => _authController.signOut(),
             icon: Icon(Icons.logout, color: Colors.red),
@@ -97,35 +97,30 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            showInfo
-                ? Container()
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ProfileCard(
-                        title:
-                            _authController.userProfile!.displayName.toString(),
-                        subtitle: "Username",
-                        iconData: Icons.person,
-                      ),
-                      ProfileCard(
-                        title: _authController.userProfile!.email.toString(),
-                        subtitle: 'Email',
-                        iconData: Icons.email,
-                      ),
-                      ProfileCard(
-                        title: _authController.userProfile!.uid,
-                        subtitle: 'UID',
-                        iconData: Icons.perm_identity,
-                      ),
-                      // ProfileCard(
-                      //   title: _authController.userMode.toString(),
-                      //   subtitle: 'Phone',
-                      //   iconData: Icons.mode,
-                      // ),
-                    ],
-                  ),
+            // showInfo
+            //     ? Container()
+            //     : Column(
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           ProfileCard(
+            //             title:
+            //                 _authController.userProfile!.displayName.toString(),
+            //             subtitle: "Username",
+            //             iconData: Icons.person,
+            //           ),
+            //           ProfileCard(
+            //             title: _authController.userProfile!.email.toString(),
+            //             subtitle: 'Email',
+            //             iconData: Icons.email,
+            //           ),
+            //           ProfileCard(
+            //             title: _authController.userProfile!.uid,
+            //             subtitle: 'UID',
+            //             iconData: Icons.perm_identity,
+            //           ),
+            //         ],
+            //       ),
 
             SizedBox(height: Config.screenHeight! * 0.006),
             Text('By Nerdy Approach Co', style: kUbuntu15),

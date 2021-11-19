@@ -42,6 +42,7 @@ class _ApartmentsState extends State<Apartments> {
             body: ListView(
               children: snapshot.data!.docs.map((document) {
                 final url = document['url'];
+                final owner = document['owner'];
 
                 return Center(
                   child: Card(
@@ -166,6 +167,8 @@ class _ApartmentsState extends State<Apartments> {
                                         ],
                                       ),
                                     ),
+                                    SizedBox(
+                                        height: Config.screenHeight! * 0.02),
                                     Card(
                                       elevation: 0,
                                       child: Container(
@@ -175,56 +178,24 @@ class _ApartmentsState extends State<Apartments> {
                                               horizontal: 20, vertical: 5),
                                           child: Column(
                                             children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Location: ',
-                                                    style: kUbuntu15,
-                                                  ),
-                                                  Text(
-                                                    '${document["location"]}',
-                                                    style: kUbuntu15.copyWith(
-                                                        fontSize: 20,
-                                                        color: kAccentColor),
-                                                  ),
-                                                ],
+                                              ApartmentDetailsTile(
+                                                title: 'Location:',
+                                                value:
+                                                    "${document['location']}",
                                               ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Price: ',
-                                                    style: kUbuntu15,
-                                                  ),
-                                                  Text(
+                                              ApartmentDetailsTile(
+                                                title: 'Price: ',
+                                                value:
                                                     'KES ${document["price"]}',
-                                                    style: kUbuntu15.copyWith(
-                                                        fontSize: 20,
-                                                        color: kAccentColor),
-                                                  ),
-                                                ],
                                               ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Deposit: ',
-                                                    style: kUbuntu15,
-                                                  ),
-                                                  Text(
+                                              ApartmentDetailsTile(
+                                                title: 'Deposit: ',
+                                                value:
                                                     'KES ${document["deposit"]}',
-                                                    style: kUbuntu15.copyWith(
-                                                        fontSize: 20,
-                                                        color: kAccentColor),
-                                                  ),
-                                                ],
+                                              ),
+                                              ApartmentDetailsTile(
+                                                title: 'Owner: ',
+                                                value: '${document["owner"]}',
                                               ),
                                             ],
                                           ),
@@ -279,10 +250,12 @@ class _ApartmentsState extends State<Apartments> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   CircleAvatar(
+                                    child: Text("${owner[0]}"),
                                     radius: 20,
                                     backgroundColor: Colors.primaries[Random()
                                         .nextInt(Colors.primaries.length)],
                                   ),
+                                  // Text(owner, style: kUbuntu15),
                                   SizedBox(height: 10),
                                   IconButton(
                                     onPressed: () {
@@ -343,6 +316,31 @@ class _ApartmentsState extends State<Apartments> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ApartmentDetailsTile extends StatelessWidget {
+  const ApartmentDetailsTile({
+    required this.title,
+    required this.value,
+  });
+  final String title;
+  final String value;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: kUbuntu15,
+        ),
+        Text(
+          value,
+          style: kUbuntu15.copyWith(fontSize: 20, color: kAccentColor),
+        ),
+      ],
     );
   }
 }

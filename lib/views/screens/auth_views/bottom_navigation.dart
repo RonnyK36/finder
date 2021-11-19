@@ -26,13 +26,13 @@ class _NavigationManagerState extends State<NavigationManager> {
   final tenantScreens = [
     Apartments(),
     Search(),
-    HomeScreen(), // trending page
+    // HomeScreen(), // trending page
     ProfilePage(),
   ];
 
   final landlordScreens = [
     AddApartment(),
-    ManageApartments(),
+    // ManageApartments(),
     Notifications(),
     ProfilePage(),
   ];
@@ -43,8 +43,8 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            // child: buildTenantView(),
-            child: buildLandlordView(),
+            child: buildTenantView(),
+            // child: buildLandlordView(),
             // child: _.userMode == 'Landlord'
             //     ? buildLandlordView()
             //     : buildTenantView(),
@@ -79,11 +79,11 @@ class _NavigationManagerState extends State<NavigationManager> {
             icon: Icon(Icons.add),
             label: 'Add new',
           ),
-          BottomNavigationBarItem(
-            // backgroundColor: Colors.red,
-            icon: Icon(Icons.manage_accounts),
-            label: 'Manage',
-          ),
+          // BottomNavigationBarItem(
+          //   // backgroundColor: Colors.red,
+          //   icon: Icon(Icons.manage_accounts),
+          //   label: 'Manage',
+          // ),
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.notifications),
@@ -129,11 +129,11 @@ class _NavigationManagerState extends State<NavigationManager> {
             icon: Icon(Icons.search),
             label: 'Search',
           ),
-          BottomNavigationBarItem(
-            // backgroundColor: kAccentColor,
-            icon: Icon(Icons.whatshot),
-            label: 'Trending',
-          ),
+          // BottomNavigationBarItem(
+          //   // backgroundColor: kAccentColor,
+          //   icon: Icon(Icons.whatshot),
+          //   label: 'Trending',
+          // ),
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.person),
