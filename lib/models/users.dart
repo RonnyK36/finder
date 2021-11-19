@@ -1,10 +1,12 @@
-
 class UserModel {
-  static const ID = "id";
-  static const NAME = "name";
-  static const EMAIL = "email";
-  String id = '';
-  String name = '';
-  String email = '';
-  UserModel({required this.id, required this.name, required this.email});
+  final String uid;
+  final String name;
+  final String email;
+  final String userMode;
+  UserModel({
+    required this.userMode,
+    required this.uid,
+    required this.name,
+    required this.email,
+  });
 }

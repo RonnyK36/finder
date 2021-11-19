@@ -1,6 +1,6 @@
 import 'package:finder/config/configurations.dart';
 import 'package:finder/widgets/login_header.dart';
-import 'package:finder/widgets/reset_form.dart';
+import 'package:finder/widgets/forms/reset_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,13 +27,14 @@ class _ResetPasswordState extends State<ResetPassword> {
                       onPressed: () => Get.back(), icon: Icon(Icons.close)),
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TitleSection(title: 'Password recovery'),
-                  ],
-                ),
-                Column(
-                  children: [
+                    Text(
+                      'Recover your password.',
+                      style: kUbuntu15.copyWith(
+                        fontSize: 25,
+                        color: kPrimaryColor,
+                      ),
+                    ),
                     Card(
                       elevation: 3,
                       shadowColor: kAccentColor,
