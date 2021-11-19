@@ -36,15 +36,19 @@ class _AddApartmentState extends State<AddApartment> {
     required String deposit,
     required String location,
     required String description,
+    required String downloadUrl,
   }) async {
     await database.createApartment(
       Apartment(
-        apartmentId: _authController.userProfile!.uid,
+        apartmentId: "${name}_${_authController.userProfile!.uid}",
+        ownerId: _authController.userProfile!.uid,
         name: name,
+        owner: _authController.userProfile!.displayName!,
         description: description,
         location: location,
         price: price,
         deposit: deposit,
+        url: downloadUrl,
       ),
     );
     print('Trying');
@@ -71,6 +75,11 @@ class _AddApartmentState extends State<AddApartment> {
     );
   }
 
+  Future<String> _uploadImage(name, File file) async {
+    String downloadUrl = await database.uploadImage(name, image);
+    return downloadUrl;
+  }
+
   bool isUploadComplete = false;
   File? image;
 
@@ -88,6 +97,32 @@ class _AddApartmentState extends State<AddApartment> {
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
+  }
+
+  bool isLoading = false;
+
+  handleSubmit(
+    String price,
+    name,
+    deposit,
+    location,
+    description,
+    image,
+  ) async {
+    setState(() {
+      isLoading = true;
+    });
+    String downloadUrl = await _uploadImage(name, image);
+
+    _createApartment(
+      context,
+      downloadUrl: downloadUrl,
+      name: name,
+      price: price,
+      deposit: deposit,
+      location: location,
+      description: description,
+    );
   }
 
   @override
@@ -267,13 +302,13 @@ class _AddApartmentState extends State<AddApartment> {
                     String deposit = depositController.text.trim();
                     String location = locationController.text.trim();
                     String description = descriptionController.text.trim();
-                    _createApartment(
-                      context,
-                      name: name,
-                      price: price,
-                      deposit: deposit,
-                      location: location,
-                      description: description,
+                    handleSubmit(
+                      price,
+                      name,
+                      deposit,
+                      location,
+                      description,
+                      image,
                     );
                   }
                   nameController.clear();
@@ -281,6 +316,7 @@ class _AddApartmentState extends State<AddApartment> {
                   depositController.clear();
                   locationController.clear();
                   descriptionController.clear();
+
                   setState(() {
                     isUploadComplete = true;
                   });

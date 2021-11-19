@@ -36,7 +36,6 @@ class _NavigationManagerState extends State<NavigationManager> {
     Notifications(),
     ProfilePage(),
   ];
-  final _authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +43,7 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
+            // child: buildTenantView(),
             child: buildLandlordView(),
             // child: _.userMode == 'Landlord'
             //     ? buildLandlordView()

@@ -127,10 +127,16 @@ class _ApartmentsState extends State<Apartments> {
                                       ),
                                     );
                                   },
-                                  child: Center(
-                                    child: Image.network(
-                                      url,
-                                      fit: BoxFit.contain,
+                                  child: Container(
+                                    color: kAccentColor,
+                                    height: Config.screenHeight! * 0.3,
+                                    child: Center(
+                                      child: url == null
+                                          ? Container()
+                                          : Image.network(
+                                              url,
+                                              fit: BoxFit.contain,
+                                            ),
                                     ),
                                   ),
                                 ),
