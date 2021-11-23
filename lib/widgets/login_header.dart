@@ -59,7 +59,7 @@ class TitleSection extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: Config.screenWidth! * 0.03),
                     child: Text(
-                      'Do you have an account? ',
+                      'Have an account? ',
                       style: kUbuntu15.copyWith(
                         fontSize: 20,
                         color: kPrimaryColor,

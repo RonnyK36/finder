@@ -11,8 +11,8 @@ import 'package:finder/views/screens/tenant_views/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-final tenantsRef = FirebaseFirestore.instance.collection('tenants');
-final landLordsRef = FirebaseFirestore.instance.collection('landlords');
+final tenantsRef = FirebaseFirestore.instance.collection('tenants').get();
+final landLordsRef = FirebaseFirestore.instance.collection('landlords').get();
 
 class NavigationManager extends StatefulWidget {
   const NavigationManager({Key? key}) : super(key: key);
@@ -29,10 +29,11 @@ class _NavigationManagerState extends State<NavigationManager> {
     // HomeScreen(), // trending page
     ProfilePage(),
   ];
+  final _auth = Get.find<AuthController>();
 
   final landlordScreens = [
     AddApartment(),
-    // ManageApartments(),
+    // ManageApartments(uid: _auth.userProfile!.uid),
     Notifications(),
     ProfilePage(),
   ];
@@ -43,8 +44,8 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            child: buildTenantView(),
-            // child: buildLandlordView(),
+            // child: buildTenantView(),
+            child: buildLandlordView(),
             // child: _.userMode == 'Landlord'
             //     ? buildLandlordView()
             //     : buildTenantView(),
@@ -77,18 +78,18 @@ class _NavigationManagerState extends State<NavigationManager> {
           BottomNavigationBarItem(
             // backgroundColor: Colors.red,
             icon: Icon(Icons.add),
-            label: 'Add new',
+            label: 'Upload new',
+          ),
+          BottomNavigationBarItem(
+            // backgroundColor: Colors.red,
+            icon: Icon(Icons.manage_accounts),
+            label: 'Manage',
           ),
           // BottomNavigationBarItem(
-          //   // backgroundColor: Colors.red,
-          //   icon: Icon(Icons.manage_accounts),
-          //   label: 'Manage',
+          //   // backgroundColor: kAccentColor,
+          //   icon: Icon(Icons.notifications),
+          //   label: 'Notifications',
           // ),
-          BottomNavigationBarItem(
-            // backgroundColor: kAccentColor,
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.person),

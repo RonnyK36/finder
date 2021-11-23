@@ -118,6 +118,10 @@ class _AddApartmentState extends State<AddApartment> {
     });
     String downloadUrl = await _uploadImage(name, image);
 
+    setState(() {
+      isUploadComplete = true;
+    });
+
     _createApartment(
       context,
       downloadUrl: downloadUrl,
@@ -358,10 +362,6 @@ class _AddApartmentState extends State<AddApartment> {
                   depositController.clear();
                   locationController.clear();
                   descriptionController.clear();
-
-                  setState(() {
-                    isUploadComplete = true;
-                  });
                 },
                 label: 'New apartment',
               ),
