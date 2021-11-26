@@ -29,12 +29,13 @@ class _NavigationManagerState extends State<NavigationManager> {
     // HomeScreen(), // trending page
     ProfilePage(),
   ];
-  final _auth = Get.find<AuthController>();
+  // final _auth = Get.find<AuthController>();
+  // final String uid = _auth.userProfile!.uid;
 
   final landlordScreens = [
     AddApartment(),
-    // ManageApartments(uid: _auth.userProfile!.uid),
-    Notifications(),
+    ManageApartments(),
+    // Notifications(),
     ProfilePage(),
   ];
 

@@ -18,6 +18,7 @@ class LandingPage extends StatelessWidget {
             children: [
               Spacer(),
               SizedBox(height: 20),
+              // Show the splash screen image
               Container(
                 height: 250,
                 width: 250,
@@ -28,6 +29,7 @@ class LandingPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30),
+              // Show a short message to user
               Text(
                 'Find a new place? \n\nHOSTEL || RENTAL',
                 style: TextStyle(
@@ -37,6 +39,7 @@ class LandingPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 40),
+              //  Button to continue to the app
               reusableButton(
                 context,
                 onPressed: () => Get.to(() => Root()),

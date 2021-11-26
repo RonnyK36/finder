@@ -1,13 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/widgets/components/loading.dart';
+import 'package:finder/widgets/components/single_apartment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ManageApartments extends StatefulWidget {
-  const ManageApartments({required this.uid});
-  final String uid;
-
   @override
   _ManageApartmentsState createState() => _ManageApartmentsState();
 }
@@ -17,16 +15,14 @@ class _ManageApartmentsState extends State<ManageApartments> {
 
   CollectionReference apartmentsRef =
       FirebaseFirestore.instance.collection('apartments');
-  final userApartments =
-      FirebaseFirestore.instance.collection('apartments').doc();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: apartmentsRef.snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        final String uid = _authController.userProfile!.uid;
         if (!snapshot.hasData) {
-          final String uid = _authController.userProfile!.uid;
           return Container(
             child: Center(
               child: Loading(),
@@ -36,9 +32,42 @@ class _ManageApartmentsState extends State<ManageApartments> {
         return Scaffold(
           body: ListView(
             children: snapshot.data!.docs.map((doc) {
-              return Card(
-                child: Text("doc['name']"),
-              );
+              if (doc["ownerId"] == uid) {
+                return SingleApartmentCard(
+                  isTenant: false,
+                  doc: doc,
+                  updateApartment: () {
+                    apartmentsRef.doc(doc['name']).update({});
+                  },
+                  callLandlord: () {},
+                );
+                // return Card(
+                //   child: Column(
+                //     children: [
+                //       Text("${doc['name']}"),
+                //       Text("${doc['price']}"),
+                //       Row(
+                //         mainAxisAlignment: MainAxisAlignment.center,
+                //         children: [
+                //           TextButton(
+                //               onPressed: () {
+                //                 apartmentsRef
+                //                     .doc(doc['name'])
+                //                     .update({"price": '4000'});
+                //               },
+                //               child: Text('Update')),
+                //           TextButton(
+                //               onPressed: () {
+                //                 apartmentsRef.doc(doc['name']).delete();
+                //               },
+                //               child: Text('Delete')),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // );
+              }
+              return SizedBox.shrink();
             }).toList(),
           ),
         );

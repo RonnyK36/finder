@@ -13,6 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final tenantsRef = FirebaseFirestore.instance.collection('tenants');
 final landLordsRef = FirebaseFirestore.instance.collection('landlords');
@@ -24,6 +25,7 @@ class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   String userMode = '';
+  late SharedPreferences pref;
   User? get userProfile => auth.currentUser;
 
   @override
@@ -51,9 +53,11 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       )
-          .then((value) {
+          .then((value) async {
         displayName = name;
         phone = phone;
+        pref = await SharedPreferences.getInstance();
+        pref.setString("usermode", userMode);
         userMode = isTenant ? 'Tenant' : 'Landlord';
         auth.currentUser!.updateDisplayName(name);
 
@@ -144,7 +148,14 @@ class AuthController extends GetxController {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) {});
+          .then((value) async {
+        String uid = value.user!.uid;
+        DocumentSnapshot doc = await FirebaseFirestore.instance
+            .collection('landlords')
+            .doc(uid)
+            .get();
+        print(doc.data()!.toString());
+      });
       update();
       if (auth.currentUser == null) {
         Loading();
