@@ -12,17 +12,14 @@ class SingleApartmentCard extends StatelessWidget {
     Key? key,
     required this.isTenant,
     required this.doc,
-    required this.updateApartment,
-    required this.callLandlord,
   }) : super(key: key);
 
   final bool isTenant;
   final QueryDocumentSnapshot doc;
-  final Function updateApartment;
-  final Function callLandlord;
 
   @override
   Widget build(BuildContext context) {
+    String owner = doc['owner'];
     return Card(
       color: Colors.black,
       child: Container(
@@ -83,34 +80,13 @@ class SingleApartmentCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  GestureDetector(
-                    onTap: isTenant
-                        ? () {
-                            Get.to(
-                              () => DetailsPage(
-                                title: doc['name'],
-                                image: doc['url'],
-                                price: doc['price'],
-                                location: doc['location'],
-                                description: doc['description'],
-                              ),
-                            );
-                          }
-                        : () {
-                            Get.to(
-                              () => UpdateApartment(
-                                doc: doc,
-                              ),
-                            );
-                          },
-                    child: Container(
-                      color: kAccentColor,
-                      height: Config.screenHeight! * 0.3,
-                      child: Center(
-                        child: Image.network(
-                          doc['url'],
-                          fit: BoxFit.contain,
-                        ),
+                  Container(
+                    color: kAccentColor,
+                    height: Config.screenHeight! * 0.3,
+                    child: Center(
+                      child: Image.network(
+                        doc['url'],
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
@@ -248,7 +224,7 @@ class SingleApartmentCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           CircleAvatar(
-                            child: Text('${doc["owner[0]"]}'),
+                            child: Text(owner[0]),
                             radius: 20,
                             backgroundColor: Colors.primaries[
                                 Random().nextInt(Colors.primaries.length)],
@@ -256,11 +232,7 @@ class SingleApartmentCard extends StatelessWidget {
                           // Text(owner, style: kUbuntu15),
                           SizedBox(height: 10),
                           IconButton(
-                            onPressed: () {
-                              // setState(() {
-                              //   isFavorite = !isFavorite;
-                              // });
-                            },
+                            onPressed: () {},
                             icon: Icon(
                               Icons.favorite,
                               color: Colors.red,

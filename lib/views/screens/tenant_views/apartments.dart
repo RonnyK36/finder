@@ -49,8 +49,6 @@ class _ApartmentsState extends State<Apartments> {
                   child: SingleApartmentCard(
                     isTenant: true,
                     doc: document,
-                    updateApartment: () {},
-                    callLandlord: () {},
                   ),
                 );
               }).toList(),

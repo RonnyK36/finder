@@ -36,10 +36,6 @@ class _ManageApartmentsState extends State<ManageApartments> {
                 return SingleApartmentCard(
                   isTenant: false,
                   doc: doc,
-                  updateApartment: () {
-                    apartmentsRef.doc(doc['name']).update({});
-                  },
-                  callLandlord: () {},
                 );
                 // return Card(
                 //   child: Column(

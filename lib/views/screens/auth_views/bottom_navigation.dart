@@ -22,10 +22,11 @@ class NavigationManager extends StatefulWidget {
 }
 
 class _NavigationManagerState extends State<NavigationManager> {
-  int currentIndex = 0;
+  int currentIndex = 1;
+
   final tenantScreens = [
-    Apartments(),
     Search(),
+    Apartments(),
     // HomeScreen(), // trending page
     ProfilePage(),
   ];
@@ -45,8 +46,8 @@ class _NavigationManagerState extends State<NavigationManager> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            // child: buildTenantView(),
-            child: buildLandlordView(),
+            child: buildTenantView(),
+            // child: buildLandlordView(),
             // child: _.userMode == 'Landlord'
             //     ? buildLandlordView()
             //     : buildTenantView(),
@@ -123,14 +124,15 @@ class _NavigationManagerState extends State<NavigationManager> {
         items: [
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
-            icon: Icon(Icons.home),
-            label: 'Appartments',
-          ),
-          BottomNavigationBarItem(
-            // backgroundColor: kAccentColor,
             icon: Icon(Icons.search),
             label: 'Search',
           ),
+          BottomNavigationBarItem(
+            // backgroundColor: kAccentColor,
+            icon: Icon(Icons.home),
+            label: 'Appartments',
+          ),
+
           // BottomNavigationBarItem(
           //   // backgroundColor: kAccentColor,
           //   icon: Icon(Icons.whatshot),

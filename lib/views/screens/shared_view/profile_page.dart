@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/models/landlords.dart';
@@ -19,6 +20,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool showInfo = true;
 
+  CollectionReference landlords =
+      FirebaseFirestore.instance.collection('landlords');
   final _authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
@@ -47,86 +50,91 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            // Text('Your Account', style: kUbuntu15.copyWith(fontSize: 30)),
-            Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: Config.screenHeight! * 0.015,
-                      horizontal: Config.screenWidth! * 0.02),
-                  child: Row(
+      body: StreamBuilder<Object>(
+          stream: landlords.snapshots().where((event) => false),
+          builder: (context, snapshot) {
+            return Center(
+              child: Column(
+                children: [
+                  Text('', style: kUbuntu15.copyWith(fontSize: 30)),
+                  Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          print('Change profile');
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.primaries[
-                              Random().nextInt(Colors.primaries.length)],
-                          maxRadius: Config.screenWidth! * 0.1,
-                          child: Text(
-                            _authController.userProfile!.displayName
-                                .toString()[0],
-                            style: kUbuntu15.copyWith(
-                              fontSize: 30,
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: Config.screenHeight! * 0.015,
+                            horizontal: Config.screenWidth! * 0.02),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                print('Change profile');
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: Colors.primaries[
+                                    Random().nextInt(Colors.primaries.length)],
+                                maxRadius: Config.screenWidth! * 0.1,
+                                child: Text(
+                                  _authController.userProfile!.displayName
+                                      .toString()[0],
+                                  style: kUbuntu15.copyWith(
+                                    fontSize: 30,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(width: Config.screenWidth! * 0.05),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _authController.userProfile!.displayName
+                                      .toString(),
+                                  style: kUbuntu15.copyWith(fontSize: 25),
+                                ),
+                                SizedBox(height: Config.screenHeight! * 0.006),
+                                Text(
+                                  _authController.userProfile!.email.toString(),
+                                  style: kUbuntu15,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(width: Config.screenWidth! * 0.05),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            _authController.userProfile!.displayName.toString(),
-                            style: kUbuntu15.copyWith(fontSize: 25),
-                          ),
-                          SizedBox(height: Config.screenHeight! * 0.006),
-                          Text(
-                            _authController.userProfile!.email.toString(),
-                            style: kUbuntu15,
-                          ),
-                        ],
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-            // showInfo
-            //     ? Container()
-            //     : Column(
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         children: [
-            //           ProfileCard(
-            //             title:
-            //                 _authController.userProfile!.displayName.toString(),
-            //             subtitle: "Username",
-            //             iconData: Icons.person,
-            //           ),
-            //           ProfileCard(
-            //             title: _authController.userProfile!.email.toString(),
-            //             subtitle: 'Email',
-            //             iconData: Icons.email,
-            //           ),
-            //           ProfileCard(
-            //             title: _authController.userProfile!.uid,
-            //             subtitle: 'UID',
-            //             iconData: Icons.perm_identity,
-            //           ),
-            //         ],
-            //       ),
+                  // showInfo
+                  //     ? Container()
+                  //     : Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.center,
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: [
+                  //           ProfileCard(
+                  //             title:
+                  //                 _authController.userProfile!.displayName.toString(),
+                  //             subtitle: "Username",
+                  //             iconData: Icons.person,
+                  //           ),
+                  //           ProfileCard(
+                  //             title: _authController.userProfile!.email.toString(),
+                  //             subtitle: 'Email',
+                  //             iconData: Icons.email,
+                  //           ),
+                  //           ProfileCard(
+                  //             title: _authController.userProfile!.uid,
+                  //             subtitle: 'UID',
+                  //             iconData: Icons.perm_identity,
+                  //           ),
+                  //         ],
+                  //       ),
 
-            SizedBox(height: Config.screenHeight! * 0.006),
-            Text('By Nerdy Approach Co', style: kUbuntu15),
-          ],
-        ),
-      ),
+                  SizedBox(height: Config.screenHeight! * 0.006),
+                  Text('By Nerdy Approach Co', style: kUbuntu15),
+                ],
+              ),
+            );
+          }),
     );
   }
 }
