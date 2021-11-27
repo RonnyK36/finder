@@ -5,6 +5,7 @@ import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/auth_views/root.dart';
 import 'package:finder/views/screens/landlord_views/update_apartment.dart';
 import 'package:finder/views/screens/tenant_views/landlord_apartments.dart';
+import 'package:finder/views/screens/tenant_views/landlord_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
@@ -45,7 +46,7 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
     String name = widget.doc['name'];
 
     return Card(
-      color: Colors.black,
+      color: Colors.black.withBlue(50),
       child: Container(
         // width: double.infinity,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -105,7 +106,7 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                     ],
                   ),
                   Container(
-                    color: kAccentColor,
+                    color: kPrimaryColor,
                     height: Config.screenHeight! * 0.3,
                     child: Center(
                       child: Image.network(
@@ -191,8 +192,10 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                                 ElevatedButton.icon(
                                   onPressed: () {
                                     Get.to(
-                                      () =>
-                                          LandlordAparmtents(ownerId: ownerId),
+                                      () => LandlordAparmtents(
+                                        ownerId: ownerId,
+                                        owner: owner,
+                                      ),
                                     );
                                   },
                                   icon: Icon(
@@ -296,22 +299,24 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          CircleAvatar(
-                            child: Text(owner[0]),
-                            radius: 20,
-                            backgroundColor: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() =>
+                                  ViewLandlordProfile(uid: doc['ownerId']));
+                            },
+                            child: CircleAvatar(
+                              child: Text(owner[0]),
+                              radius: 20,
+                              backgroundColor: Colors.primaries[
+                                  Random().nextInt(Colors.primaries.length)],
+                            ),
                           ),
-                          // Text(owner, style: kUbuntu15),
                           SizedBox(height: 10),
                           IconButton(
                             onPressed: () {},
                             icon: Icon(
                               Icons.favorite,
                               color: Colors.red,
-                              // color: isFavorite
-                              //     ? Colors.red
-                              //     : Colors.white,
                             ),
                           ),
                           IconButton(

@@ -2,53 +2,78 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
-import 'package:finder/controllers/auth_controllers.dart';
+import 'package:finder/views/screens/tenant_views/landlord_apartments.dart';
 import 'package:finder/widgets/components/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 
-class LandlordProfile extends StatefulWidget {
-  const LandlordProfile({Key? key}) : super(key: key);
+class ViewLandlordProfile extends StatefulWidget {
+  ViewLandlordProfile({required this.uid});
+  final String uid;
 
   @override
-  _LandlordProfileState createState() => _LandlordProfileState();
+  _ViewLandlordProfileState createState() => _ViewLandlordProfileState();
 }
 
-class _LandlordProfileState extends State<LandlordProfile> {
+class _ViewLandlordProfileState extends State<ViewLandlordProfile> {
+  get uid => widget.uid;
   CollectionReference landlords =
       FirebaseFirestore.instance.collection('landlords');
+  String? displayName;
+  getLandlordInfo() async {
+    DocumentSnapshot doc = await landlords.doc(uid).get();
 
-  final _authController = Get.find<AuthController>();
+    setState(() {
+      this.displayName = doc['displayName'];
+    });
+    print(doc['userMode']);
+  }
+
+  callLandlord(String id) async {
+    DocumentSnapshot doc = await landlords.doc(id).get();
+    String phone = doc['phone'];
+    await FlutterPhoneDirectCaller.callNumber(phone);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLandlordInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
-    String uid = _authController.userProfile!.uid;
     return Scaffold(
-      backgroundColor: kAccentColor,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        actions: [
-          // TextButton(
-          //   onPressed: () {
-          //     setState(() {
-          //       showInfo = !showInfo;
-          //     });
-          //   },
-          //   child: Text(
-          //     showInfo ? 'Show info' : 'Hide info',
-          //     style: kUbuntu15.copyWith(color: kAccentColor),
-          //   ),
-          // ),
-          TextButton.icon(
-            onPressed: () => _authController.signOut(),
-            icon: Icon(Icons.logout, color: Colors.red),
-            label: Text(
-              'Logout',
-              style: kUbuntu15.copyWith(color: Colors.red),
-            ),
-          ),
-        ],
-      ),
+      backgroundColor: kPrimaryColor,
+      // appBar: AppBar(
+      //   backgroundColor: kAccentColor,
+      //   title: Text(
+      //     '',
+      //     style: kUbuntu15.copyWith(color: kAccentColor),
+      //   ),
+      //   actions: [
+      // TextButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       showInfo = !showInfo;
+      //     });
+      //   },
+      //   child: Text(
+      //     showInfo ? 'Show info' : 'Hide info',
+      //     style: kUbuntu15.copyWith(color: kAccentColor),
+      //   ),
+      // ),
+      // TextButton.icon(
+      //   onPressed: () => _authController.signOut(),
+      //   icon: Icon(Icons.logout, color: Colors.red),
+      //   label: Text(
+      //     'Logout',
+      //     style: kUbuntu15.copyWith(color: Colors.red),
+      //   ),
+      // ),
+      //   ],
+      // ),
       body: StreamBuilder(
           stream: landlords.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -70,8 +95,7 @@ class _LandlordProfileState extends State<LandlordProfile> {
                               Random().nextInt(Colors.primaries.length)],
                           maxRadius: Config.screenWidth! * 0.15,
                           child: Text(
-                            _authController.userProfile!.displayName
-                                .toString()[0],
+                            displayName.toString()[0],
                             style: kUbuntu15.copyWith(
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
@@ -100,6 +124,38 @@ class _LandlordProfileState extends State<LandlordProfile> {
                         subtitle: 'User mode',
                         iconData: Icons.mode,
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton.icon(
+                              onPressed: () {
+                                print('Calling');
+                                callLandlord(doc['id']);
+                              },
+                              icon: Icon(
+                                Icons.phone,
+
+                                color: Colors.white,
+                                // color: color == Colors.red ? Colors.white : Colors.red,
+                              ),
+                              label: Text('Call landlord')),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Get.to(
+                                () => LandlordAparmtents(
+                                  ownerId: doc['id'],
+                                  owner: doc['displayName'],
+                                ),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.more,
+                              // color: color == Colors.red ? Colors.white : Colors.red,
+                            ),
+                            label: Text('More from owner'),
+                          ),
+                        ],
+                      )
                     ],
                   );
                 }

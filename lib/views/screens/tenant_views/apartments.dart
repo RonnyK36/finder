@@ -19,7 +19,7 @@ class _ApartmentsState extends State<Apartments> {
   Widget build(BuildContext context) {
     // return buildLocalApartmnents();
     return Container(
-      color: kAccentColor,
+      color: kPrimaryColor,
       child: StreamBuilder(
         stream: apartmentsRef.snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -31,7 +31,9 @@ class _ApartmentsState extends State<Apartments> {
             );
           }
           return Scaffold(
+            backgroundColor: kPrimaryColor,
             appBar: AppBar(
+              backgroundColor: kAccentColor,
               title: Text(
                 'All apartments',
                 style: kUbuntu15.copyWith(fontSize: 23),

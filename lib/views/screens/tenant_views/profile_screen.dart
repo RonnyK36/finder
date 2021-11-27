@@ -26,9 +26,9 @@ class _TenantProfileState extends State<TenantProfile> {
   Widget build(BuildContext context) {
     String uid = _authController.userProfile!.uid;
     return Scaffold(
-      backgroundColor: kAccentColor,
+      backgroundColor: kPrimaryColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: kAccentColor,
         actions: [
           // TextButton(
           //   onPressed: () {

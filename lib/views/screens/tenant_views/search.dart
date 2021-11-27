@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/tenant_views/landlord_apartments.dart';
+import 'package:finder/views/screens/tenant_views/landlord_profile.dart';
 import 'package:finder/widgets/components/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -70,17 +71,23 @@ class _SearchState extends State<Search> {
                       onTap: () {
                         Get.to(() => LandlordAparmtents(
                               ownerId: ownerId,
+                              owner: name,
                             ));
                       },
                       child: ListTile(
-                        leading: CircleAvatar(
-                          child: Text(name[0],
-                              style: kUbuntu15.copyWith(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              )),
-                          backgroundColor: Colors.primaries[
-                              Random().nextInt(Colors.primaries.length)],
+                        leading: GestureDetector(
+                          onTap: () {
+                            Get.to(() => ViewLandlordProfile(uid: ownerId));
+                          },
+                          child: CircleAvatar(
+                            child: Text(name[0],
+                                style: kUbuntu15.copyWith(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            backgroundColor: Colors.primaries[
+                                Random().nextInt(Colors.primaries.length)],
+                          ),
                         ),
                         title: Text(
                           '${document["displayName"]}',

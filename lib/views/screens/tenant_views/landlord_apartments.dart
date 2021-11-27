@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finder/config/configurations.dart';
 import 'package:finder/widgets/components/loading.dart';
 import 'package:finder/widgets/components/single_apartment_card.dart';
 import 'package:flutter/material.dart';
 
 class LandlordAparmtents extends StatefulWidget {
-  LandlordAparmtents({required this.ownerId});
+  LandlordAparmtents({
+    required this.ownerId,
+    required this.owner,
+  });
   final String ownerId;
+  final String owner;
 
   @override
   _LandlordAparmtentsState createState() => _LandlordAparmtentsState();
@@ -28,7 +33,17 @@ class _LandlordAparmtentsState extends State<LandlordAparmtents> {
             ),
           );
         }
+
         return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              widget.owner,
+              style: kUbuntu15.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           body: ListView(
             children: snapshot.data!.docs.map((doc) {
               if (doc["ownerId"] == ownerId) {
