@@ -32,12 +32,14 @@ class _ApartmentsState extends State<Apartments> {
           }
           return Scaffold(
             appBar: AppBar(
-              title: Text('Available now'),
+              title: Text(
+                'All apartments',
+                style: kUbuntu15.copyWith(fontSize: 23),
+              ),
+              centerTitle: true,
             ),
             body: ListView(
               children: snapshot.data!.docs.map((document) {
-            
-
                 return Center(
                   child: SingleApartmentCard(
                     isTenant: true,

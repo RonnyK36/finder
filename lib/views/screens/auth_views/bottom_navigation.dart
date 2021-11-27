@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
-import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/landlord_views/add_apartments.dart';
 import 'package:finder/views/screens/landlord_views/manage_apartments.dart';
 import 'package:finder/views/screens/landlord_views/profile_page.dart';
@@ -8,13 +7,10 @@ import 'package:finder/views/screens/tenant_views/apartments.dart';
 import 'package:finder/views/screens/tenant_views/profile_screen.dart';
 import 'package:finder/views/screens/tenant_views/search.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-final tenantsRef = FirebaseFirestore.instance.collection('tenants').get();
-final landLordsRef = FirebaseFirestore.instance.collection('landlords').get();
 
 class NavigationManager extends StatefulWidget {
-  const NavigationManager({Key? key}) : super(key: key);
+  NavigationManager({required this.uid});
+  final String uid;
 
   @override
   _NavigationManagerState createState() => _NavigationManagerState();
@@ -22,38 +18,43 @@ class NavigationManager extends StatefulWidget {
 
 class _NavigationManagerState extends State<NavigationManager> {
   int currentIndex = 1;
+  get uid => widget.uid;
 
   final tenantScreens = [
     Search(),
     Apartments(),
-    // HomeScreen(), // trending page
     TenantProfile(),
   ];
-  // final _auth = Get.find<AuthController>();
-  // final String uid = _auth.userProfile!.uid;
+
+  CollectionReference landLordsRef =
+      FirebaseFirestore.instance.collection('landlords');
 
   final landlordScreens = [
     AddApartment(),
     ManageApartments(),
-    // Notifications(),
     LandlordProfile(),
   ];
+  bool isTenant = true;
+
+  getUserMode(uid) async {
+    DocumentSnapshot doc = await landLordsRef.doc(uid).get();
+    print(doc.exists);
+    if (doc.exists) {
+      setState(() {
+        isTenant = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserMode(uid);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GetBuilder<AuthController>(
-        builder: (_) {
-          return SafeArea(
-            child: buildTenantView(),
-            // child: buildLandlordView(),
-            // child: _.userMode == 'Landlord'
-            //     ? buildLandlordView()
-            //     : buildTenantView(),
-          );
-        },
-      ),
-    );
+    return isTenant ? buildTenantView() : buildLandlordView();
   }
 
   Scaffold buildLandlordView() {

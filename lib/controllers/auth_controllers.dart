@@ -25,14 +25,9 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
-    getTenants();
     displayName = userProfile != null ? userProfile!.displayName! : '';
 
     super.onInit();
-  }
-
-  getTenants() {
-    tenantsRef.get();
   }
 
   void signUp(

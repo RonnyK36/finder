@@ -245,19 +245,20 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                                                         fontSize: 18)),
                                               ),
                                               TextButton(
-                                                onPressed: () {
+                                                onPressed: () async {
                                                   setState(() {
                                                     isLoading = true;
                                                   });
-                                                  apartmentsRef
+
+                                                  await apartmentsRef
                                                       .doc(widget.doc['name'])
                                                       .delete()
                                                       .then((value) {
                                                     setState(() {
                                                       isLoading = false;
                                                     });
-                                                    Get.to(() => Root());
                                                   });
+                                                  Get.to(() => Root());
                                                 },
                                                 child: Text(
                                                   'Yes, I\'m sure',

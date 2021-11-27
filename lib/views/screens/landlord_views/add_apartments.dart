@@ -116,21 +116,50 @@ class _AddApartmentState extends State<AddApartment> {
     setState(() {
       isLoading = true;
     });
-    String downloadUrl = await _uploadImage(name, image);
 
-    setState(() {
-      isUploadComplete = true;
-    });
-
-    _createApartment(
-      context,
-      downloadUrl: downloadUrl,
-      name: name,
-      price: price,
-      deposit: deposit,
-      location: location,
-      description: description,
-    );
+    if (image == null) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(
+                'No Image selected',
+                style: kUbuntu15.copyWith(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: kAccentColor,
+                ),
+              ),
+              content: Text('Please select an image to continue.'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Got it'))
+              ],
+            );
+          });
+    } else {
+      setState(() {
+        isUploadComplete = true;
+      });
+      String downloadUrl = await _uploadImage(name, image);
+      _createApartment(
+        context,
+        downloadUrl: downloadUrl,
+        name: name,
+        price: price,
+        deposit: deposit,
+        location: location,
+        description: description,
+      );
+      nameController.clear();
+      priceController.clear();
+      depositController.clear();
+      locationController.clear();
+      descriptionController.clear();
+    }
   }
 
   @override
@@ -320,19 +349,51 @@ class _AddApartmentState extends State<AddApartment> {
                           labelText: 'Apartment Location',
                           keyboardType: TextInputType.name,
                         ),
-                        UploadTextFormField(
-                          controller: descriptionController,
-                          prefixText: 'Description:  ',
-                          validator: (val) {
-                            if (val.isEmpty) {
-                              return 'Field cannot be empty';
-                            }
-                            if (val.length <= 15) {
-                              return 'Please provide a more descriptive input';
-                            }
-                          },
-                          labelText: 'Describe your apartment',
-                          keyboardType: TextInputType.name,
+                        Container(
+                          width: Config.screenWidth! * 0.9,
+                          child: TextFormField(
+                            controller: descriptionController,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Field cannot be empty';
+                              }
+                              if (val.length <= 15) {
+                                return 'Please provide a more descriptive input';
+                              }
+                            },
+                            keyboardType: TextInputType.multiline,
+                            minLines: 4,
+                            maxLines: 5,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              alignLabelWithHint: true,
+                              prefixText: 'Description:  ',
+                              labelText: 'Describe your apartment',
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 2,
+                                  color: kAccentColor,
+                                ),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: kPrimaryColor),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: kErrorColor),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 2,
+                                  color: kAccentColor,
+                                ),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -357,13 +418,8 @@ class _AddApartmentState extends State<AddApartment> {
                       image,
                     );
                   }
-                  nameController.clear();
-                  priceController.clear();
-                  depositController.clear();
-                  locationController.clear();
-                  descriptionController.clear();
                 },
-                label: 'New apartment',
+                label: 'Create apartment',
               ),
             ],
           ),

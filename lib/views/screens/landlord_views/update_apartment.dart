@@ -100,23 +100,50 @@ class _UpdateApartmentState extends State<UpdateApartment> {
                             labelText: 'Apartment Location',
                             keyboardType: TextInputType.name,
                           ),
-                          TextFormField(
-                            controller: descriptionController,
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return 'Field cannot be empty';
-                              }
-                              if (val.length <= 15) {
-                                return 'Please provide a more descriptive input';
-                              }
-                            },
-                            keyboardType: TextInputType.multiline,
-                            minLines: 2,
-                            maxLines: 5,
-                            decoration: InputDecoration(
-                              alignLabelWithHint: true,
-                              prefixText: 'Description:  ',
-                              labelText: 'Describe your apartment',
+                          Container(
+                            width: Config.screenWidth! * 0.9,
+                            child: TextFormField(
+                              controller: descriptionController,
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return 'Field cannot be empty';
+                                }
+                                if (val.length <= 15) {
+                                  return 'Please provide a more descriptive input';
+                                }
+                              },
+                              keyboardType: TextInputType.multiline,
+                              minLines: 2,
+                              maxLines: 5,
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                alignLabelWithHint: true,
+                                prefixText: 'Description:  ',
+                                labelText: 'Describe your apartment',
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 2,
+                                    color: kAccentColor,
+                                  ),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: kPrimaryColor),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: kErrorColor),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 2,
+                                    color: kAccentColor,
+                                  ),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -196,6 +223,7 @@ class _UpdateApartmentState extends State<UpdateApartment> {
                                               .then((value) {
                                             setState(() {
                                               isLoading = false;
+                                              Navigator.of(context).pop();
                                             });
                                             Get.to(() => Root());
                                           });

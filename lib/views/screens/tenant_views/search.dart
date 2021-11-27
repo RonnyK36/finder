@@ -17,26 +17,11 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  Future<QuerySnapshot>? landlordResults;
-  searchLandlord(query) async {
-    QuerySnapshot<Map<dynamic, dynamic>> landlords = await landLordsRef
-        .where('userMode', isGreaterThanOrEqualTo: query)
-        .get();
-
-    landlords.docs.forEach((DocumentSnapshot element) {
-      print(element.data());
-    });
-
-    setState(() {
-      // landlordResults = landlords;
-    });
-  }
-
   TextEditingController searchController = TextEditingController();
 
   CollectionReference landlordsRef =
       FirebaseFirestore.instance.collection('landlords');
-
+  bool info = false;
   @override
   Widget build(BuildContext context) {
     // return buildSearchPage();
@@ -58,7 +43,21 @@ class _SearchState extends State<Search> {
               elevation: 0,
               backgroundColor: kAccentColor,
               centerTitle: true,
-              title: Text('Call for enquiries'),
+              title: Text(
+                info
+                    ? 'Select landlord to show apartments'
+                    : 'Call for enquiries',
+                style: info ? kUbuntu15 : kUbuntu15.copyWith(fontSize: 20),
+              ),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        info = !info;
+                      });
+                    },
+                    icon: Icon(Icons.info))
+              ],
             ),
             body: ListView(
               children: snapshot.data!.docs.map((document) {

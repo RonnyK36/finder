@@ -21,7 +21,9 @@ class _RootState extends State<Root> {
       body: GetBuilder<AuthController>(
         builder: (_) {
           return SafeArea(
-            child: _.userProfile != null ? NavigationManager() : LoginPage(),
+            child: _.userProfile != null
+                ? NavigationManager(uid: _.userProfile!.uid)
+                : LoginPage(),
           );
         },
       ),
