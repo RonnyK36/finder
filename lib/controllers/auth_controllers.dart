@@ -1,15 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
-import 'package:finder/models/landlords.dart';
-import 'package:finder/models/tenants.dart';
-import 'package:finder/models/users.dart';
 import 'package:finder/views/screens/shared_view/add_info.dart';
 import 'package:finder/views/screens/shared_view/landing_page.dart';
 import 'package:finder/views/screens/auth_views/root.dart';
 import 'package:finder/widgets/components/loading.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';

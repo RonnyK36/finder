@@ -1,14 +1,8 @@
-import 'dart:math';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
-import 'package:finder/data/apartments.dart';
-import 'package:finder/views/screens/tenant_views/details_screen.dart';
 import 'package:finder/widgets/components/loading.dart';
 import 'package:finder/widgets/components/single_apartment_card.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Apartments extends StatefulWidget {
   const Apartments({Key? key}) : super(key: key);
@@ -42,8 +36,7 @@ class _ApartmentsState extends State<Apartments> {
             ),
             body: ListView(
               children: snapshot.data!.docs.map((document) {
-                final url = document['url'];
-                final owner = document['owner'];
+            
 
                 return Center(
                   child: SingleApartmentCard(

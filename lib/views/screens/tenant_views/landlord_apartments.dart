@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/widgets/components/loading.dart';
 import 'package:finder/widgets/components/single_apartment_card.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LandlordAparmtents extends StatefulWidget {
   LandlordAparmtents({required this.ownerId});

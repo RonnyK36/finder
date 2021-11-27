@@ -34,7 +34,7 @@ class LandingPage extends StatelessWidget {
                 'Find a new place? \n\nHOSTEL || RENTAL',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).accentColor,
+                  color: kAccentColor,
                   fontSize: 18,
                 ),
               ),

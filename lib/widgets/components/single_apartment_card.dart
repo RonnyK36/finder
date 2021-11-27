@@ -4,8 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/auth_views/root.dart';
 import 'package:finder/views/screens/landlord_views/update_apartment.dart';
-import 'package:finder/views/screens/tenant_views/details_screen.dart';
-import 'package:finder/views/screens/tenant_views/search.dart';
+import 'package:finder/views/screens/tenant_views/landlord_apartments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
@@ -42,6 +41,7 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
   @override
   Widget build(BuildContext context) {
     String owner = widget.doc['owner'];
+    String ownerId = widget.doc['ownerId'];
     String name = widget.doc['name'];
 
     return Card(
@@ -191,20 +191,15 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                                 ElevatedButton.icon(
                                   onPressed: () {
                                     Get.to(
-                                      () => DetailsPage(
-                                        title: widget.doc['name'],
-                                        image: widget.doc['url'],
-                                        price: widget.doc['price'],
-                                        location: widget.doc['location'],
-                                        description: widget.doc['description'],
-                                      ),
+                                      () =>
+                                          LandlordAparmtents(ownerId: ownerId),
                                     );
                                   },
                                   icon: Icon(
                                     Icons.more,
                                     // color: color == Colors.red ? Colors.white : Colors.red,
                                   ),
-                                  label: Text('View Details'),
+                                  label: Text('More from owner'),
                                 ),
                               ],
                             )

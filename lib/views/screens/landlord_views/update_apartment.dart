@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/views/screens/auth_views/root.dart';
-import 'package:finder/views/screens/landlord_views/manage_apartments.dart';
 import 'package:finder/widgets/components/loading.dart';
 import 'package:finder/widgets/components/upload_text_field.dart';
 import 'package:flutter/material.dart';

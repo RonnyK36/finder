@@ -3,12 +3,10 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
-import 'package:finder/views/screens/tenant_views/details_screen.dart';
 import 'package:finder/views/screens/tenant_views/landlord_apartments.dart';
 import 'package:finder/widgets/components/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class Search extends StatefulWidget {
