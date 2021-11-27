@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
-import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/tenant_views/landlord_apartments.dart';
 import 'package:finder/views/screens/tenant_views/landlord_profile.dart';
 import 'package:finder/widgets/components/loading.dart';

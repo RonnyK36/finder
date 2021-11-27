@@ -17,24 +17,23 @@ class LandingPage extends StatelessWidget {
           child: Column(
             children: [
               Spacer(),
-              SizedBox(height: 20),
               // Show the splash screen image
               Container(
                 height: 250,
                 width: 250,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('images/landing_apart.png'),
+                    image: AssetImage('images/haofinder-logo.png'),
                   ),
                 ),
               ),
-              SizedBox(height: 30),
               // Show a short message to user
+
               Text(
-                'Find a new place? \n\nHOSTEL || RENTAL',
+                'Redefining you housing experience.',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: kAccentColor,
+                  color: kPrimaryColor,
                   fontSize: 18,
                 ),
               ),

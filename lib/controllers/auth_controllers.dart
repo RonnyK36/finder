@@ -121,7 +121,7 @@ class AuthController extends GetxController {
         Get.offAll(() => Root());
         Get.snackbar(
           'Welcome ${userProfile!.displayName.toString()},',
-          'You are a landlord, take a minute or two to fill us in. ',
+          'You currently have no apartments to be displayed.',
           backgroundColor: kAccentColor,
           duration: Duration(seconds: 6),
           overlayBlur: 5,
@@ -136,16 +136,8 @@ class AuthController extends GetxController {
     String password,
   ) async {
     try {
-      await auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) async {
-        String uid = value.user!.uid;
-        DocumentSnapshot doc = await FirebaseFirestore.instance
-            .collection('landlords')
-            .doc(uid)
-            .get();
-        print(doc.data()!.toString());
-      });
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+
       update();
       if (auth.currentUser == null) {
         Loading();
@@ -153,7 +145,7 @@ class AuthController extends GetxController {
         Get.offAll(() => Root());
         Get.snackbar(
           'Welcome back ${userProfile!.displayName.toString()}',
-          'Let\'pick up where we left off. Shall we?',
+          'Let\'s pick up where we left off. Shall we?',
           backgroundColor: kAccentColor,
           colorText: Colors.white,
           overlayBlur: 5,
