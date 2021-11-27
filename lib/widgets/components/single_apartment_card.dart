@@ -2,24 +2,43 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finder/config/configurations.dart';
+import 'package:finder/views/screens/auth_views/root.dart';
 import 'package:finder/views/screens/landlord_views/update_apartment.dart';
 import 'package:finder/views/screens/tenant_views/details_screen.dart';
+import 'package:finder/views/screens/tenant_views/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SingleApartmentCard extends StatelessWidget {
-  const SingleApartmentCard({
+class SingleApartmentCard extends StatefulWidget {
+  SingleApartmentCard({
     Key? key,
     required this.isTenant,
     required this.doc,
   }) : super(key: key);
 
   final bool isTenant;
+
   final QueryDocumentSnapshot doc;
 
   @override
+  State<SingleApartmentCard> createState() => _SingleApartmentCardState();
+}
+
+class _SingleApartmentCardState extends State<SingleApartmentCard> {
+  bool isLoading = false;
+  CollectionReference apartmentsRef =
+      FirebaseFirestore.instance.collection('apartments');
+  CollectionReference landlordsRef =
+      FirebaseFirestore.instance.collection('landlords');
+
+  callLandlord(String id) async {
+    // Future<DocumentSnapshot> doc = landlordsRef.doc(id).get();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String owner = doc['owner'];
+    String owner = widget.doc['owner'];
+    String name = widget.doc['name'];
     return Card(
       color: Colors.black,
       child: Container(
@@ -52,7 +71,7 @@ class SingleApartmentCard extends StatelessWidget {
                                     color: Colors.grey,
                                   ),
                                   Text(
-                                    doc['name'],
+                                    widget.doc['name'],
                                     style: kUbuntu15.copyWith(
                                       fontSize: 22,
                                       fontWeight: FontWeight.bold,
@@ -68,7 +87,7 @@ class SingleApartmentCard extends StatelessWidget {
                                     color: Colors.red,
                                   ),
                                   Text(
-                                    doc['location'],
+                                    widget.doc['location'],
                                     style: kUbuntu15.copyWith(
                                         fontSize: 15, color: Colors.grey),
                                   ),
@@ -85,7 +104,7 @@ class SingleApartmentCard extends StatelessWidget {
                     height: Config.screenHeight! * 0.3,
                     child: Center(
                       child: Image.network(
-                        doc['url'],
+                        widget.doc['url'],
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -106,7 +125,7 @@ class SingleApartmentCard extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              doc['description'],
+                              widget.doc['description'],
                               style: kUbuntu15.copyWith(
                                 fontSize: 15,
                                 color: Colors.white,
@@ -127,20 +146,20 @@ class SingleApartmentCard extends StatelessWidget {
                               children: [
                                 ApartmentDetailsTile(
                                   title: 'Location:',
-                                  value: doc['location'],
+                                  value: widget.doc['location'],
                                 ),
                                 ApartmentDetailsTile(
                                   title: 'Price: ',
-                                  value: doc['price'],
+                                  value: widget.doc['price'],
                                 ),
                                 ApartmentDetailsTile(
                                   title: 'Deposit: ',
-                                  value: doc['deposit'],
+                                  value: widget.doc['deposit'],
                                 ),
-                                isTenant
+                                widget.isTenant
                                     ? ApartmentDetailsTile(
                                         title: 'Owner: ',
-                                        value: doc['owner'],
+                                        value: widget.doc['owner'],
                                       )
                                     : SizedBox.shrink(),
                               ],
@@ -148,14 +167,17 @@ class SingleApartmentCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      isTenant
+                      widget.isTenant
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 ElevatedButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      print('Calling');
+                                    },
                                     icon: Icon(
-                                      isTenant ? Icons.phone : Icons.update,
+                                      Icons.phone,
+
                                       color: Colors.white,
                                       // color: color == Colors.red ? Colors.white : Colors.red,
                                     ),
@@ -164,11 +186,11 @@ class SingleApartmentCard extends StatelessWidget {
                                   onPressed: () {
                                     Get.to(
                                       () => DetailsPage(
-                                        title: doc['name'],
-                                        image: doc['url'],
-                                        price: doc['price'],
-                                        location: doc['location'],
-                                        description: doc['description'],
+                                        title: widget.doc['name'],
+                                        image: widget.doc['url'],
+                                        price: widget.doc['price'],
+                                        location: widget.doc['location'],
+                                        description: widget.doc['description'],
                                       ),
                                     );
                                   },
@@ -187,8 +209,8 @@ class SingleApartmentCard extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   TextButton.icon(
-                                    onPressed: () =>
-                                        Get.to(() => UpdateApartment(doc: doc)),
+                                    onPressed: () => Get.to(
+                                        () => UpdateApartment(doc: widget.doc)),
                                     icon:
                                         Icon(Icons.update, color: Colors.green),
                                     label: Text('Update',
@@ -198,6 +220,55 @@ class SingleApartmentCard extends StatelessWidget {
                                   TextButton.icon(
                                     onPressed: () {
                                       print('Deleting');
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Text('Delete $name!',
+                                                style: kUbuntu15.copyWith(
+                                                    color: kAccentColor,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            content: Text(
+                                                'Are you sure you want to delete the apartment? This can not be undone.',
+                                                style: kUbuntu15.copyWith(
+                                                    fontSize: 18)),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Cancel',
+                                                    style: kUbuntu15.copyWith(
+                                                        fontSize: 18)),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    isLoading = true;
+                                                  });
+                                                  apartmentsRef
+                                                      .doc(widget.doc['name'])
+                                                      .delete()
+                                                      .then((value) {
+                                                    setState(() {
+                                                      isLoading = false;
+                                                    });
+                                                    Get.to(() => Root());
+                                                  });
+                                                },
+                                                child: Text(
+                                                  'Yes, I\'m sure',
+                                                  style: kUbuntu15.copyWith(
+                                                      color: Colors.red,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
                                     },
                                     icon: Icon(Icons.delete_forever,
                                         color: Colors.red),
@@ -215,7 +286,7 @@ class SingleApartmentCard extends StatelessWidget {
                 ],
               ),
             ),
-            isTenant
+            widget.isTenant
                 ? Align(
                     alignment: Alignment.bottomRight,
                     child: Container(

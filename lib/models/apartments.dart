@@ -8,6 +8,7 @@ class Apartment {
   final String owner;
   final String url;
   final String ownerId;
+
   Apartment({
     required this.apartmentId,
     required this.name,

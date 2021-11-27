@@ -37,31 +37,6 @@ class _ManageApartmentsState extends State<ManageApartments> {
                   isTenant: false,
                   doc: doc,
                 );
-                // return Card(
-                //   child: Column(
-                //     children: [
-                //       Text("${doc['name']}"),
-                //       Text("${doc['price']}"),
-                //       Row(
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           TextButton(
-                //               onPressed: () {
-                //                 apartmentsRef
-                //                     .doc(doc['name'])
-                //                     .update({"price": '4000'});
-                //               },
-                //               child: Text('Update')),
-                //           TextButton(
-                //               onPressed: () {
-                //                 apartmentsRef.doc(doc['name']).delete();
-                //               },
-                //               child: Text('Delete')),
-                //         ],
-                //       ),
-                //     ],
-                //   ),
-                // );
               }
               return SizedBox.shrink();
             }).toList(),

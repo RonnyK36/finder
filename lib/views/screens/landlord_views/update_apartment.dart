@@ -51,7 +51,10 @@ class _UpdateApartmentState extends State<UpdateApartment> {
         ? Loading()
         : Scaffold(
             appBar: AppBar(
-              title: Text('Update apartment'),
+              title: Text(doc['name'],
+                  style: kUbuntu15.copyWith(
+                      fontWeight: FontWeight.bold, fontSize: 22)),
+              centerTitle: true,
             ),
             body: SafeArea(
               child: SingleChildScrollView(
@@ -65,20 +68,6 @@ class _UpdateApartmentState extends State<UpdateApartment> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          UploadTextFormField(
-                            controller: nameController,
-                            prefixText: 'Name:  ',
-                            validator: (val) {
-                              if (val.isEmpty) {
-                                return 'Field cannot be empty';
-                              }
-                              if (val.length <= 5) {
-                                return 'Provide a valid name';
-                              }
-                            },
-                            labelText: 'Apartment name',
-                            keyboardType: TextInputType.name,
-                          ),
                           UploadTextFormField(
                             controller: priceController,
                             prefixText: 'Price:  ',
@@ -112,19 +101,24 @@ class _UpdateApartmentState extends State<UpdateApartment> {
                             labelText: 'Apartment Location',
                             keyboardType: TextInputType.name,
                           ),
-                          UploadTextFormField(
+                          TextFormField(
                             controller: descriptionController,
-                            prefixText: 'Description:  ',
                             validator: (val) {
-                              if (val.isEmpty) {
+                              if (val!.isEmpty) {
                                 return 'Field cannot be empty';
                               }
                               if (val.length <= 15) {
                                 return 'Please provide a more descriptive input';
                               }
                             },
-                            labelText: 'Describe your apartment',
-                            keyboardType: TextInputType.name,
+                            keyboardType: TextInputType.multiline,
+                            minLines: 2,
+                            maxLines: 5,
+                            decoration: InputDecoration(
+                              alignLabelWithHint: true,
+                              prefixText: 'Description:  ',
+                              labelText: 'Describe your apartment',
+                            ),
                           ),
                         ],
                       ),
@@ -174,9 +168,10 @@ class _UpdateApartmentState extends State<UpdateApartment> {
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    title: Text('Delete Apartment!',
+                                    title: Text('Delete ${doc["name"]}!',
                                         style: kUbuntu15.copyWith(
-                                            fontSize: 25,
+                                            color: kAccentColor,
+                                            fontSize: 20,
                                             fontWeight: FontWeight.bold)),
                                     content: Text(
                                         'Are you sure you want to delete the apartment? This can not be undone.',

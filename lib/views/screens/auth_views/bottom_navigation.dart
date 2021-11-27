@@ -4,9 +4,10 @@ import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/landlord_views/add_apartments.dart';
 import 'package:finder/views/screens/landlord_views/manage_apartments.dart';
 import 'package:finder/views/screens/landlord_views/notifications.dart';
-import 'package:finder/views/screens/shared_view/profile_page.dart';
+import 'package:finder/views/screens/landlord_views/profile_page.dart';
 import 'package:finder/views/screens/tenant_views/apartments.dart';
 import 'package:finder/views/screens/tenant_views/home_screen.dart';
+import 'package:finder/views/screens/tenant_views/profile_screen.dart';
 import 'package:finder/views/screens/tenant_views/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class _NavigationManagerState extends State<NavigationManager> {
     Search(),
     Apartments(),
     // HomeScreen(), // trending page
-    ProfilePage(),
+    TenantProfile(),
   ];
   // final _auth = Get.find<AuthController>();
   // final String uid = _auth.userProfile!.uid;
@@ -37,7 +38,7 @@ class _NavigationManagerState extends State<NavigationManager> {
     AddApartment(),
     ManageApartments(),
     // Notifications(),
-    ProfilePage(),
+    LandlordProfile(),
   ];
 
   @override
@@ -124,20 +125,14 @@ class _NavigationManagerState extends State<NavigationManager> {
         items: [
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.phone),
+            label: 'Call search',
           ),
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.home),
             label: 'Appartments',
           ),
-
-          // BottomNavigationBarItem(
-          //   // backgroundColor: kAccentColor,
-          //   icon: Icon(Icons.whatshot),
-          //   label: 'Trending',
-          // ),
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.person),

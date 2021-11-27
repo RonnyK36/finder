@@ -57,39 +57,46 @@ class _SearchState extends State<Search> {
             backgroundColor: kPrimaryColor,
             appBar: AppBar(
               elevation: 0,
-              backgroundColor: Colors.white,
+              backgroundColor: kAccentColor,
               centerTitle: true,
-              title: TextFormField(
-                controller: searchController,
-                keyboardType: TextInputType.name,
-                onFieldSubmitted: searchLandlord,
-                decoration: InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  hintText: 'Search',
-                  hintStyle: kUbuntu15.copyWith(fontSize: 18),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    size: 30,
-                  ),
-                  suffixIcon: IconButton(
-                      onPressed: () {
-                        searchController.clear();
-                      },
-                      icon: Icon(Icons.close)),
-                ),
-              ),
+              title: Text('Call for enquiries'),
+              // title: TextFormField(
+              //   controller: searchController,
+              //   keyboardType: TextInputType.name,
+              //   onFieldSubmitted: searchLandlord,
+              //   decoration: InputDecoration(
+              //     fillColor: Colors.white,
+              //     filled: true,
+              //     hintText: 'Search',
+              //     hintStyle: kUbuntu15.copyWith(fontSize: 18),
+              //     prefixIcon: Icon(
+              //       Icons.search,
+              //       size: 30,
+              //     ),
+              //     suffixIcon: IconButton(
+              //         onPressed: () {
+              //           searchController.clear();
+              //         },
+              //         icon: Icon(Icons.close)),
+              //   ),
+              // ),
             ),
             body: ListView(
               children: snapshot.data!.docs.map((document) {
-                // final url = document['url'];
+                final name = document['displayName'];
 
                 return Center(
                   child: Card(
                     child: ListTile(
                       leading: CircleAvatar(
-                          backgroundColor: Colors.primaries[
-                              Random().nextInt(Colors.primaries.length)]),
+                        child: Text(name[0],
+                            style: kUbuntu15.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        backgroundColor: Colors.primaries[
+                            Random().nextInt(Colors.primaries.length)],
+                      ),
                       title: Text(
                         '${document["displayName"]}',
                         style: kUbuntu15.copyWith(fontWeight: FontWeight.bold),
