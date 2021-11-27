@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ronnykevin.finder">
    <application
-        android:label="finder"
+        android:label="MKU Finder"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
