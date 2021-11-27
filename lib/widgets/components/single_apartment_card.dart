@@ -7,6 +7,7 @@ import 'package:finder/views/screens/landlord_views/update_apartment.dart';
 import 'package:finder/views/screens/tenant_views/details_screen.dart';
 import 'package:finder/views/screens/tenant_views/search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 
 class SingleApartmentCard extends StatefulWidget {
@@ -17,7 +18,6 @@ class SingleApartmentCard extends StatefulWidget {
   }) : super(key: key);
 
   final bool isTenant;
-
   final QueryDocumentSnapshot doc;
 
   @override
@@ -26,19 +26,24 @@ class SingleApartmentCard extends StatefulWidget {
 
 class _SingleApartmentCardState extends State<SingleApartmentCard> {
   bool isLoading = false;
+  get doc => widget.doc;
+
   CollectionReference apartmentsRef =
       FirebaseFirestore.instance.collection('apartments');
   CollectionReference landlordsRef =
       FirebaseFirestore.instance.collection('landlords');
 
   callLandlord(String id) async {
-    // Future<DocumentSnapshot> doc = landlordsRef.doc(id).get();
+    DocumentSnapshot doc = await landlordsRef.doc(id).get();
+    String phone = doc['phone'];
+    await FlutterPhoneDirectCaller.callNumber(phone);
   }
 
   @override
   Widget build(BuildContext context) {
     String owner = widget.doc['owner'];
     String name = widget.doc['name'];
+
     return Card(
       color: Colors.black,
       child: Container(
@@ -174,6 +179,7 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                                 ElevatedButton.icon(
                                     onPressed: () {
                                       print('Calling');
+                                      callLandlord(doc['ownerId']);
                                     },
                                     icon: Icon(
                                       Icons.phone,
