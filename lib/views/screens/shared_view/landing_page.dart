@@ -28,7 +28,6 @@ class LandingPage extends StatelessWidget {
                 ),
               ),
               // Show a short message to user
-
               Text(
                 'Redefining you housing experience.',
                 style: TextStyle(
@@ -42,7 +41,7 @@ class LandingPage extends StatelessWidget {
               reusableButton(
                 context,
                 onPressed: () => Get.to(() => Root()),
-                label: 'Get started',
+                label: 'Continue',
               ),
               Spacer(),
             ],

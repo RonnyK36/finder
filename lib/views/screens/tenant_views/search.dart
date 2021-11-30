@@ -42,12 +42,16 @@ class _SearchState extends State<Search> {
             appBar: AppBar(
               elevation: 0,
               backgroundColor: kAccentColor,
-              centerTitle: true,
               title: Text(
                 info
                     ? 'Select landlord to show apartments'
                     : 'Call for enquiries',
-                style: info ? kUbuntu15 : kUbuntu15.copyWith(fontSize: 20),
+                style: info
+                    ? kUbuntu15
+                    : kUbuntu15.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
               ),
               actions: [
                 IconButton(
