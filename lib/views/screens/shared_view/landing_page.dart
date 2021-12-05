@@ -16,28 +16,18 @@ class LandingPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Spacer(),
+
               // Show the splash screen image
               Container(
-                height: 250,
-                width: 250,
+                height: Config.screenHeight! * 0.8,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/haofinder-logo.png'),
                   ),
                 ),
               ),
-              // Show a short message to user
-              Text(
-                'Redefining you housing experience.',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: kPrimaryColor,
-                  fontSize: 18,
-                ),
-              ),
-              SizedBox(height: 40),
-              //  Button to continue to the app
+
               reusableButton(
                 context,
                 onPressed: () => Get.to(() => Root()),
