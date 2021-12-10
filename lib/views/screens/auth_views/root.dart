@@ -24,7 +24,7 @@ class _RootState extends State<Root> {
           return SafeArea(
             child: _.userProfile != null
                 ? NavigationManager(uid: _.userProfile!.uid)
-                : LandingPage(),
+                : LoginPage(),
           );
         },
       ),
