@@ -10,7 +10,7 @@ const kAccentColor = Color(0xff6061fa);
 
 var kUbuntu15 = GoogleFonts.ubuntu(
   textStyle: TextStyle(
-    fontSize: 15,
+    fontSize: 20,
     letterSpacing: 1.3,
   ),
 );
