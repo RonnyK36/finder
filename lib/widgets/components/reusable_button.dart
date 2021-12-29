@@ -15,7 +15,7 @@ Container reusableButton(
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 3,
-          primary: Theme.of(context).primaryColor,
+          primary: kAccentColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),
           ),

@@ -27,7 +27,11 @@ class SignInButtons extends StatelessWidget {
         Align(
           alignment: Alignment.centerRight,
           child: TextButton(
-            child: Text('Forgot password?'),
+            child: Text(
+              'Forgot password?',
+              style: kUbuntu15.copyWith(
+                  fontSize: 15, color: kPrimaryColor, wordSpacing: 1),
+            ),
             onPressed: () => Get.to(() => ResetPassword()),
           ),
         ),
@@ -52,7 +56,10 @@ class SignInButtons extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () => Get.to(() => SignUpScreen()),
-                  child: Text('Sign up')),
+                  child: Text(
+                    'Sign up',
+                    style: kUbuntu15,
+                  )),
             ],
           ),
         ),

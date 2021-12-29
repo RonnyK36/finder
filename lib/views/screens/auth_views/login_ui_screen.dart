@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               // Header of page
               TitleSection(
-                title: 'finder',
+                title: 'MKU Finder',
               ),
 
               // SizedBox(height: Config.screenHeight! * 0.08),
