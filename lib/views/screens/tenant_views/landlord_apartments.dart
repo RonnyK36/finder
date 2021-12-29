@@ -35,6 +35,7 @@ class _LandlordAparmtentsState extends State<LandlordAparmtents> {
         }
 
         return Scaffold(
+          backgroundColor: kPrimaryColor,
           appBar: AppBar(
             title: Text(
               widget.owner,

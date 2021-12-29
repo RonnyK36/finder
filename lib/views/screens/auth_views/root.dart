@@ -2,7 +2,6 @@ import 'package:finder/config/configurations.dart';
 import 'package:finder/controllers/auth_controllers.dart';
 import 'package:finder/views/screens/auth_views/bottom_navigation.dart';
 import 'package:finder/views/screens/auth_views/login_ui_screen.dart';
-import 'package:finder/views/screens/shared_view/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +23,7 @@ class _RootState extends State<Root> {
           return SafeArea(
             child: _.userProfile != null
                 ? NavigationManager(uid: _.userProfile!.uid)
-                : LandingPage(),
+                : LoginPage(),
           );
         },
       ),

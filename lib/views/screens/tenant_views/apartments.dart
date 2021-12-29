@@ -19,7 +19,7 @@ class _ApartmentsState extends State<Apartments> {
   Widget build(BuildContext context) {
     // return buildLocalApartmnents();
     return Container(
-      color: kPrimaryColor,
+      // color: kPrimaryColor,
       child: StreamBuilder(
         stream: apartmentsRef.snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -43,9 +43,20 @@ class _ApartmentsState extends State<Apartments> {
             body: ListView(
               children: snapshot.data!.docs.map((document) {
                 return Center(
-                  child: SingleApartmentCard(
-                    isTenant: true,
-                    doc: document,
+                  child: Column(
+                    children: [
+                      SingleApartmentCard(
+                        isTenant: true,
+                        doc: document,
+                      ),
+                      Divider(
+                        height: 10,
+                        indent: 10,
+                        endIndent: 10,
+                        thickness: 2,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 );
               }).toList(),

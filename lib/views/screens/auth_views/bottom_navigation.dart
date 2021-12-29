@@ -87,11 +87,6 @@ class _NavigationManagerState extends State<NavigationManager> {
             icon: Icon(Icons.manage_accounts),
             label: 'Manage',
           ),
-          // BottomNavigationBarItem(
-          //   // backgroundColor: kAccentColor,
-          //   icon: Icon(Icons.notifications),
-          //   label: 'Notifications',
-          // ),
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.person),
@@ -130,7 +125,7 @@ class _NavigationManagerState extends State<NavigationManager> {
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,
             icon: Icon(Icons.home),
-            label: 'Appartments',
+            label: 'Apartments',
           ),
           BottomNavigationBarItem(
             // backgroundColor: kAccentColor,

@@ -46,7 +46,9 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
     String name = widget.doc['name'];
 
     return Card(
-      color: Colors.black.withBlue(50),
+      shadowColor: Colors.black.withBlue(50),
+      elevation: 3,
+      color: Colors.white,
       child: Container(
         // width: double.infinity,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -106,7 +108,7 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                     ],
                   ),
                   Container(
-                    color: kPrimaryColor,
+                    color: Colors.white,
                     height: Config.screenHeight! * 0.3,
                     child: Center(
                       child: Image.network(
@@ -134,7 +136,7 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                               widget.doc['description'],
                               style: kUbuntu15.copyWith(
                                 fontSize: 15,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                           ],
@@ -142,12 +144,13 @@ class _SingleApartmentCardState extends State<SingleApartmentCard> {
                       ),
                       SizedBox(height: Config.screenHeight! * 0.02),
                       Card(
+                        color: kPrimaryColor,
                         elevation: 0,
                         child: Container(
                           width: double.infinity,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
+                                horizontal: 10, vertical: 5),
                             child: Column(
                               children: [
                                 ApartmentDetailsTile(
